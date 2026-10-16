@@ -40,18 +40,22 @@ const hobbies = [
 ---
 <Base title="About" active="about" description="About Joselyn Garcia: WashU Marketing + Entrepreneurship student, HCI minor, founder of ReLeaf Candles.">
   <header class="hero">
-    <p class="eyebrow">About me</p>
-    <h1>Hi, I’m Joselyn.</h1>
-    <p class="tagline">Marketing + Entrepreneurship at <strong>WashU</strong>, minoring in <strong>Human-Computer Interaction</strong>.</p>
     <img class="portrait" src="/images/about/portrait.webp" alt="Joselyn Garcia smiling in a striped polo on campus" />
+    <div class="intro">
+      <p class="eyebrow">About me</p>
+      <h1>Hi, I’m Joselyn.</h1>
+      <p class="tagline">Marketing + Entrepreneurship at <strong>WashU</strong>, minoring in <strong>Human-Computer Interaction</strong>.</p>
+      <p class="body">I love <strong>client-facing work</strong>, creativity, and turning an idea into something I can <strong>see and test</strong>.</p>
+      <p class="body">That’s what led me to found <a href="/projects/releaf"><strong>ReLeaf Candles</strong></a>, and it’s how I’ve approached every project since: marketing, product, and UX, all aimed at real people.</p>
+      <div class="cta">
+        <a class="btn" href={`mailto:${site.email}`}>Email me</a>
+        <a class="btn ghost" href={site.resume || "/resume"} target="_blank" rel="noopener">Resume ↗</a>
+        {site.linkedin && <a class="btn ghost" href={site.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>}
+      </div>
+    </div>
   </header>
 
-  <section class="band-sec">
-    <p class="pull">I love <span class="hl">client-facing work</span>, creativity, and turning an idea into something I can <span class="hl">see and test</span>.</p>
-    <p class="body">That’s what led me to found <a href="/projects/releaf"><strong>ReLeaf Candles</strong></a>, and it’s how I’ve approached every project since: marketing, product, and UX, all aimed at real people.</p>
-  </section>
-
-  <section class="band-sec tinted" aria-labelledby="now-h">
+  <section class="band-sec" aria-labelledby="now-h">
     <p class="eyebrow">Right now</p>
     <h2 id="now-h">Where you’ll find me.</h2>
     <ul class="now three">
@@ -68,7 +72,7 @@ const hobbies = [
     </div>
   </section>
 
-  <section class="band-sec tinted" id="toolbox" aria-labelledby="tool-h">
+  <section class="band-sec" id="toolbox" aria-labelledby="tool-h">
     <p class="eyebrow">Toolbox</p>
     <h2 id="tool-h">What I build with.</h2>
     <div class="tool-marquee" aria-label="Tools I use">
@@ -97,54 +101,51 @@ const hobbies = [
     </div>
     {site.pinterest && <p><a class="btn ghost" href={site.pinterest} target="_blank" rel="noopener">See my Pinterest boards ↗</a></p>}
     <p class="site-note" id="site">The little dog following your cursor can be switched off in the footer.</p>
-    <div class="cta">
-      <a class="btn" href={`mailto:${site.email}`}>Email me</a>
-      <a class="btn ghost" href={site.resume || "/resume"} target="_blank" rel="noopener">Resume ↗</a>
-      {site.linkedin && <a class="btn ghost" href={site.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>}
-    </div>
   </section>
 </Base>
 
 <style>
-  .hero { padding: 150px 20px 0; text-align: center; }
-  .hero h1 { font-size: clamp(3.2rem, 8vw, 6rem); margin-bottom: 0.15em; }
-  .tagline { font-size: clamp(1.15rem, 2vw, 1.45rem); color: var(--ink-2); max-width: 640px; margin: 0 auto; }
-  .portrait { width: min(100%, 520px); aspect-ratio: 1; object-fit: cover; margin: 56px auto 0; border-radius: 28px; box-shadow: 0 30px 80px rgba(26, 26, 26, 0.16); }
-  .band-sec { padding: 120px 20px; text-align: center; }
-  .band-sec.tinted { background: transparent; }
-  .band-sec > * { max-width: 760px; margin-left: auto; margin-right: auto; }
-  .band-sec h2 { font-size: clamp(2.6rem, 5.5vw, 4.2rem); margin-bottom: 0.5em; }
-  .pull { font-family: var(--serif); font-size: clamp(1.8rem, 3.6vw, 2.8rem); line-height: 1.2; color: var(--ink); max-width: 860px !important; }
-  .hl { color: var(--lyft-text); font-style: italic; }
-  .body { font-size: 1.2rem; color: var(--ink-2); margin-top: 24px; }
-  .now { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 900px !important; text-align: left; }
-  .now.three { grid-template-columns: repeat(3, 1fr); }
-  .now li { padding: 26px 28px; border-radius: 22px; background: var(--white); }
-  .now b { display: block; font-family: var(--serif); font-weight: 650; font-size: 1.7rem; line-height: 1.1; margin-bottom: 6px; }
-  .now span { color: var(--ink-2); }
-  .hint { color: var(--ink-3); margin-top: -8px; }
-  .cards { display: grid; gap: 18px; margin-top: 32px; max-width: 1100px !important; text-align: left; }
+  /* left-aligned, F-pattern layout on the same 1040px column as the case studies */
+  .hero, .band-sec { width: min(100% - 40px, 1040px); margin: 0 auto; }
+  .hero { display: grid; grid-template-columns: minmax(0, 400px) 1fr; gap: 56px; align-items: center; padding: 130px 0 64px; }
+  .portrait { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%; border-radius: 24px; box-shadow: 0 24px 60px rgba(26, 26, 26, 0.14); }
+  .hero h1 { font-size: clamp(2.8rem, 6vw, 4.6rem); margin-bottom: 0.2em; }
+  .tagline { font-size: clamp(1.15rem, 1.8vw, 1.35rem); color: var(--ink-2); margin: 0 0 22px; }
+  .body { font-size: 1.1rem; line-height: 1.6; color: var(--ink-2); margin: 0 0 12px; }
+  .body a { color: var(--ink); }
+  .band-sec { padding: 56px 0; border-top: 1px solid var(--line); }
+  .band-sec h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.4em; }
+  .now { list-style: none; padding: 0; margin: 20px 0 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .now li { padding: 22px 24px; border-radius: 20px; background: var(--white); }
+  .now b { display: block; font-size: 1.15rem; letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 6px; }
+  .now span { color: var(--ink-2); line-height: 1.5; }
+  .hint { color: var(--ink-3); margin: 0; }
+  .cards { display: grid; gap: 18px; margin-top: 24px; }
   .cards.five { grid-template-columns: repeat(5, 1fr); }
   .cards.three { grid-template-columns: repeat(3, 1fr); }
-  .cards.five :global(.f) { font-size: 1.35rem; }
-  .tool-marquee { max-width: none !important; margin: 32px -20px 0 !important; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .cards.five :global(.f) { font-size: 1.12rem; overflow-wrap: anywhere; }
+  .tool-marquee { margin-top: 24px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
   .tool-track { list-style: none; margin: 0; padding: 12px 0 20px; display: flex; gap: 20px; width: max-content; animation: tools-scroll 38s linear infinite; }
   .tool-marquee:hover .tool-track { animation-play-state: paused; }
   @keyframes tools-scroll { to { transform: translateX(-50%); } }
-  @media (prefers-reduced-motion: reduce) { .tool-track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; } .tool-track li[aria-hidden] { display: none; } }
+  @media (prefers-reduced-motion: reduce) { .tool-track { animation: none; flex-wrap: wrap; width: auto; } .tool-track li[aria-hidden] { display: none; } }
   .tool-track li { flex: none; width: 180px; display: flex; flex-direction: column; align-items: center; text-align: center; padding: 26px 16px 22px; border-radius: 22px; background: var(--white); }
   .app { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 18px; box-shadow: 0 10px 24px rgba(26, 26, 26, 0.18), inset 0 0 0 1px rgba(255, 255, 255, 0.08); margin-bottom: 12px; transition: transform 0.3s var(--ease); }
   .tool-track li:hover .app { transform: translateY(-4px) rotate(-3deg); }
   .mono { font: 700 1.55rem/1 var(--sans); letter-spacing: -0.02em; }
-  .tool-track b { font-family: var(--serif); font-weight: 650; font-size: 1.35rem; line-height: 1.1; }
+  .tool-track b { font-size: 1.1rem; line-height: 1.2; }
   .use { font-size: 0.85rem; color: var(--ink-3); margin-top: 2px; }
-  .site-note { margin-top: 56px; color: var(--ink-2); }
-  .cta { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 28px; }
+  .site-note { margin-top: 40px; color: var(--ink-2); }
+  .cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
   @media (max-width: 1080px) { .cards.five { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 32px; padding-top: 110px; }
+    .portrait { max-width: 260px; }
+  }
   @media (max-width: 760px) {
-    .now, .now.three { grid-template-columns: 1fr; }
+    .now { grid-template-columns: 1fr; }
     .cards.five, .cards.three { grid-template-columns: repeat(2, 1fr); }
-    .band-sec { padding: 80px 20px; }
+    .band-sec { padding: 44px 0; }
   }
   @media (max-width: 480px) { .cards.five, .cards.three { grid-template-columns: 1fr; } }
 </style>
