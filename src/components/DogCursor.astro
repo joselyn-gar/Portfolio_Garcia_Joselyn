@@ -1,0 +1,70 @@
+---
+// A small dog that trails the mouse. The real cursor stays visible for precision.
+// Off on touch-only devices or via the footer toggle; with reduced motion it follows without easing.
+---
+<div class="dog" data-dog aria-hidden="true">
+  <svg viewBox="0 0 64 64" width="34" height="34">
+    <ellipse cx="32" cy="57" rx="14" ry="3" fill="rgba(0,0,0,.12)" />
+    <path class="ear l" d="M14 16c-6 2-9 12-6 22 2 6 8 5 9-1l3-17z" fill="#8a5a3c" />
+    <path class="ear r" d="M50 16c6 2 9 12 6 22-2 6-8 5-9-1l-3-17z" fill="#8a5a3c" />
+    <circle cx="32" cy="32" r="20" fill="#e9c9a3" />
+    <ellipse cx="32" cy="41" rx="11" ry="8.5" fill="#f7e6d2" />
+    <circle cx="24.5" cy="30" r="3" fill="#2a1f1a" /><circle cx="39.5" cy="30" r="3" fill="#2a1f1a" />
+    <circle cx="25.5" cy="29" r="1" fill="#fff" /><circle cx="40.5" cy="29" r="1" fill="#fff" />
+    <ellipse cx="32" cy="37.5" rx="3.6" ry="2.6" fill="#2a1f1a" />
+    <path d="M32 40v2.5M32 42.5q-3 3-5.5 1M32 42.5q3 3 5.5 1" stroke="#2a1f1a" stroke-width="1.6" fill="none" stroke-linecap="round" />
+    <path class="tongue" d="M30 44.5h4v3a2 2 0 0 1-4 0z" fill="#e8838c" />
+    <circle cx="19" cy="38" r="2.6" fill="#f2a7a0" opacity=".55" /><circle cx="45" cy="38" r="2.6" fill="#f2a7a0" opacity=".55" />
+  </svg>
+</div>
+
+<style is:global>
+  .dog { position: fixed; left: 0; top: 0; z-index: 9999; pointer-events: none; display: none; will-change: transform; }
+  html.dog-on .dog { display: block; }
+  .dog svg { display: block; transition: transform 0.25s var(--ease); filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.12)); }
+  .dog .tongue { opacity: 0; transition: opacity 0.2s; }
+  .dog .ear { transform-box: fill-box; transition: transform 0.25s var(--ease); }
+  .dog .ear.l { transform-origin: 80% 10%; } .dog .ear.r { transform-origin: 20% 10%; }
+  .dog.happy svg { transform: scale(1.25); }
+  .dog.happy .tongue { opacity: 1; }
+  .dog.happy .ear.l { transform: rotate(14deg); } .dog.happy .ear.r { transform: rotate(-14deg); }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const el = document.querySelector<HTMLElement>('[data-dog]')!;
+  const fine = matchMedia('(any-hover: hover) and (any-pointer: fine)');
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
+  const KEY = 'dog-cursor';
+  const on = () => fine.matches && localStorage.getItem(KEY) !== 'off';
+  const apply = () => {
+    root.classList.toggle('dog-on', on());
+    document.querySelectorAll<HTMLButtonElement>('[data-dog-toggle]').forEach((b) => {
+      b.setAttribute('aria-pressed', String(localStorage.getItem(KEY) !== 'off'));
+      b.hidden = !fine.matches;
+    });
+  };
+  apply();
+  fine.addEventListener('change', apply);
+  document.addEventListener('click', (e) => {
+    if (!(e.target as HTMLElement).closest('[data-dog-toggle]')) return;
+    localStorage.setItem(KEY, localStorage.getItem(KEY) === 'off' ? 'on' : 'off');
+    apply();
+  });
+
+  // follow a little behind and below-right of the pointer, leaning into the direction of travel
+  let mx = -200, my = -200, x = -200, y = -200, lean = 0;
+  addEventListener('pointermove', (e) => { if (e.pointerType === 'mouse') { mx = e.clientX; my = e.clientY; } }, { passive: true });
+  document.addEventListener('pointerover', (e) => {
+    el.classList.toggle('happy', !!(e.target as HTMLElement).closest('a, button, [role="tab"], label, summary'));
+  });
+  const tick = () => {
+    const k = calm.matches ? 1 : 0.14;
+    const dx = mx - x;
+    x += dx * k; y += (my - y) * k;
+    lean += ((calm.matches ? 0 : Math.max(-14, Math.min(14, dx * 0.25))) - lean) * 0.2;
+    el.style.transform = `translate(${x + 16}px, ${y + 18}px) rotate(${lean}deg)`;
+    requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+</script>
