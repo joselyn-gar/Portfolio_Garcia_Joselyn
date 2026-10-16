@@ -95,7 +95,7 @@ const hobbies = [
   <section class="band-sec" id="away" aria-labelledby="away-h">
     <p class="eyebrow">Off the clock</p>
     <h2 id="away-h">Away from the desk.</h2>
-    <p class="hint">Tap a card to flip it.</p>
+    <p class="hint">Hover or tap a card to flip it.</p>
     <div class="cards three glass">
       {hobbies.map((h) => <FlipCard kicker="Hobby" front={h.front} back={h.back} color={h.color} img={h.img} fit={h.fit} pos={h.pos} />)}
     </div>
@@ -123,9 +123,12 @@ const hobbies = [
   .cards { display: grid; gap: 18px; margin-top: 24px; }
   .cards.five { grid-template-columns: repeat(5, 1fr); }
   .cards.three { grid-template-columns: repeat(3, 1fr); }
-  /* soft pastel panel so the glass cards have color to frost */
-  .cards.glass { padding: 24px; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.8); background: radial-gradient(at 8% 15%, #e6defc 0, transparent 50%), radial-gradient(at 92% 10%, #d6ecfb 0, transparent 50%), radial-gradient(at 30% 100%, #fde3d2 0, transparent 55%), radial-gradient(at 85% 95%, #d9f3e4 0, transparent 50%), #f3f2f8; }
-  .cards.five { gap: 12px; padding: 16px; }
+  /* flowing sunset glow behind the glass cards: soft blurred smudges, no hard panel edges */
+  .cards.glass { position: relative; isolation: isolate; }
+  .cards.glass::before { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none; filter: blur(42px); opacity: 0.5;
+    background: radial-gradient(40% 70% at 12% 40%, #b0125b, transparent 70%), radial-gradient(45% 80% at 55% 70%, #e8743b, transparent 70%), radial-gradient(35% 70% at 90% 30%, #c2410c, transparent 70%), radial-gradient(30% 60% at 35% 0%, #f2a7c3, transparent 70%); }
+  .cards.five { gap: 12px; }
+  .cards.five :global(.flip) { aspect-ratio: 1 / 1.05; }
   .cards.five :global(.flip-face) { padding: 16px; }
   .cards.five :global(.f) { font-size: 1.05rem; }
   .tool-marquee { margin-top: 24px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
@@ -147,7 +150,6 @@ const hobbies = [
     .portrait { max-width: 260px; }
   }
   @media (max-width: 760px) {
-    .cards.glass { padding: 14px; }
     .now { grid-template-columns: 1fr; }
     .cards.five, .cards.three { grid-template-columns: repeat(2, 1fr); }
     .band-sec { padding: 44px 0; }

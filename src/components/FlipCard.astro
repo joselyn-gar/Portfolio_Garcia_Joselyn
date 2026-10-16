@@ -13,16 +13,17 @@ const { front, kicker = 'Hobby', back, color = 'lyft', img, fit = 'cover', pos =
 <style>
   .flip { position: relative; display: block; width: 100%; aspect-ratio: 5 / 3.4; border: 0; padding: 0; background: none; perspective: 900px; cursor: pointer; text-align: left; }
   .flip-inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.7s var(--ease); }
-  .flip:not([data-photo]):hover .flip-inner, .flip:not([data-photo]):focus-visible .flip-inner, .flip.on .flip-inner { transform: rotateY(180deg); }
-  .flip[data-photo]:hover .flip-inner { transform: rotateY(-8deg); }
+  /* hover, keyboard focus or tap all flip the card, photo cards included */
+  @media (hover: hover) { .flip:hover .flip-inner { transform: rotateY(180deg); } }
+  .flip:focus-visible .flip-inner, .flip.on .flip-inner { transform: rotateY(180deg); }
   .flip-face { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 20px 22px; border-radius: 18px; border: 1.5px solid color-mix(in srgb, var(--c) 50%, transparent); backface-visibility: hidden; }
-  /* liquid glass: frosted white over the colored panel behind, a soft glow in the card's color, a bright top edge */
+  /* liquid glass: frosted white over the sunset glow behind, a warm smudge inside, a bright top edge */
   .flip-face { border: 1px solid rgba(255, 255, 255, 0.75); -webkit-backdrop-filter: blur(18px) saturate(160%); backdrop-filter: blur(18px) saturate(160%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 10px 30px rgba(40, 40, 80, 0.08); }
-  .front { background: radial-gradient(120% 90% at 0% 0%, color-mix(in srgb, var(--c) 22%, transparent), transparent 60%), linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.32)); }
-  .back { background: linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.6)); transform: rotateY(180deg); }
+  .front { background: radial-gradient(90% 70% at 0% 0%, rgba(176, 18, 91, 0.12), transparent 70%), radial-gradient(80% 70% at 100% 100%, rgba(194, 65, 12, 0.12), transparent 70%), linear-gradient(135deg, rgba(255, 255, 255, 0.66), rgba(255, 255, 255, 0.4)); }
+  .back { justify-content: flex-start; overflow: auto; background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.72)); transform: rotateY(180deg); }
   .k { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ct); margin-bottom: 6px; }
   .f { font-family: var(--serif); font-weight: 650; letter-spacing: -0.015em; font-size: clamp(1.4rem, 2vw, 1.9rem); line-height: 1.1; overflow-wrap: normal; hyphens: none; }
-  .b { font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; }
+  .b { font-size: 0.92rem; color: var(--ink-2); line-height: 1.45; }
   .back.photo { padding: 0; background-size: cover; background-position: center; background-repeat: no-repeat; background-color: var(--white); }
   .back.photo.contain { background-size: contain; }
 </style>
