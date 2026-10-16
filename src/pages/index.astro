@@ -1,0 +1,253 @@
+---
+// Home, modeled on Mobbin: a bold headline with inline icons, a browsable "library" window with
+// filters, a big statement, highlight cards, and a grid of every side of the portfolio.
+import Base from '../layouts/Base.astro';
+import RotatingText from '../components/RotatingText.astro';
+import { items, caseStudies, playground } from '../data/projects';
+import { site } from '../data/site';
+
+const words = ['curiosity and creativity.', 'innovation and impact.', 'purpose and passion.'];
+const groups: Record<string, string[]> = {
+  lyft: ['UX', 'Marketing'], releaf: ['Brand', 'Marketing'], 'skate-for-girls': ['UX'], 'lock-in': ['UX', 'AI'],
+  'circular-stl': ['Marketing'], 'design-social': ['Marketing', 'Design'], textiles: ['Design'],
+};
+const filters = ['All', 'UX', 'Marketing', 'Brand', 'AI', 'Design'];
+// small "app icon" crops of each project's own artwork
+const icon: Record<string, [string, string]> = {
+  lyft: ['/images/lyft/hero.webp', '62% 40%'], releaf: ['/images/releaf/cover.webp', '8% 50%'],
+  'skate-for-girls': ['/images/skate/cover.webp', '22% 45%'], 'lock-in': ['/images/lockin/icon.webp', 'center'],
+  'circular-stl': ['/images/stl/logo.webp', 'center'], 'design-social': ['/images/design/tinydesk-blue.webp', 'center'],
+  textiles: ['/images/textiles/gallery/shibori-kaleidoscope.webp', 'center'],
+};
+const cover: Record<string, string> = { 'design-social': '/images/design/playground.webp', textiles: '/images/textiles/cover.webp' };
+const skills = [['User research', 'research'], ['Prototyping', 'prototype'], ['Campaign strategy', 'campaign'], ['Branding', 'brand'], ['Prompt design', 'AI']];
+const highlights = [
+  ['lyft', '720%', 'projected ROI for a feature built on what Lyft already owns'],
+  ['releaf', 'Top 16', 'of 131 startups at the Skandalaris Venture Competition'],
+  ['skate-for-girls', '45%', 'couldn’t find Donate, so I redesigned the nav around it'],
+  ['lock-in', 'Live', 'a working study app I vibe-coded in Google AI Studio'],
+];
+const byslug = (s: string) => items.find((i) => i.slug === s)!;
+---
+<Base active="home">
+  <section class="hero" aria-label="Intro">
+    <h1>
+      Hi, I’m <span class="chip-img" aria-hidden="true"><img src="/images/about/portrait.webp" alt="" /></span> Joselyn.<br />
+      I’m <span class="accent">driven</span> by<br />
+      <RotatingText words={words} />
+    </h1>
+    <p class="sub">2nd-year at WashU, mixing Marketing, Entrepreneurship and HCI.</p>
+    <div class="ctas">
+      <a class="pill dark" href="#library">See my work</a>
+      <a class="pill" href="/about">Learn more <span aria-hidden="true">→</span></a>
+      <a class="pill" href={site.resume || '/resume'} target="_blank" rel="noopener">Resume <span aria-hidden="true">→</span></a>
+    </div>
+  </section>
+
+  <!-- the library window -->
+  <section class="window-wrap" id="library" aria-label="Browse my work">
+    <div class="window">
+      <div class="w-bar">
+        <span class="w-logo" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="w-tabs"><a href="/projects">Case studies</a><a href="/playground">Playground</a></span>
+        <button class="w-search" type="button" data-search-open>
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Search my work, skills or tools…
+        </button>
+        <a class="w-avatar" href="/about" aria-label="About me"><img src="/images/about/portrait.webp" alt="" /></a>
+      </div>
+
+      <div class="mega">
+        <div><p>Categories</p><ul>{filters.slice(1).map((f) => <li><button type="button" data-pick={f}>{f === 'AI' ? 'AI + vibe coding' : f}</button></li>)}</ul></div>
+        <div><p>Case studies</p><ul>{caseStudies.map((c) => <li><a href={c.href}>{c.short}</a></li>)}</ul></div>
+        <div><p>Skills</p><ul>{skills.map(([label, q]) => <li><button type="button" data-search-open data-q={q}>{label}</button></li>)}</ul></div>
+        <div><p>More</p><ul>{playground.map((c) => <li><a href={c.href}>{c.short}</a></li>)}<li><a href="/about">About me</a></li><li><a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
+      </div>
+
+      <div class="w-filters">
+        <div class="seg" role="tablist" aria-label="Filter by type" data-kinds>
+          <button type="button" role="tab" aria-selected="true" data-k="All">All</button>
+          <button type="button" role="tab" aria-selected="false" data-k="Case study">Case studies</button>
+          <button type="button" role="tab" aria-selected="false" data-k="Playground">Playground</button>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Filter by topic" data-topics>
+          {filters.map((f, i) => <button type="button" role="tab" aria-selected={i === 0 ? 'true' : 'false'} data-f={f}>{f}</button>)}
+        </div>
+      </div>
+
+      <div class="grid" data-grid>
+        {items.map((p) => (
+          <a class="card" href={p.href} data-g={groups[p.slug].join(' ')} data-kind={p.kind} data-face={p.face}>
+            <span class="frame"><img src={cover[p.slug] || p.cover} alt="" loading="lazy" /></span>
+            <span class="meta">
+              <span class="app"><img src={icon[p.slug][0]} alt="" style={`object-position:${icon[p.slug][1]}`} loading="lazy" /></span>
+              <span><b>{p.title}</b><small>{p.kind} · {p.tags.slice(0, 2).join(', ')}</small></span>
+            </span>
+          </a>
+        ))}
+        <p class="empty" hidden data-empty>Nothing here yet. Try another filter.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- statement -->
+  <section class="statement">
+    <p><span class="hi">I love client-facing work and creativity.</span></p>
+    <p class="gray">Turning an idea into something I can see and test. That’s how I’ve worked since founding ReLeaf Candles.</p>
+  </section>
+
+  <!-- highlights -->
+  <section class="hl-sec" aria-labelledby="hl-h">
+    <h2 id="hl-h"><svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true"><path d="M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg> Proof, not promises</h2>
+    <div class="hl-row">
+      {highlights.map(([slug, big, text]) => {
+        const p = byslug(slug);
+        return (
+          <a class="hl-card" href={p.href} data-face={p.face}>
+            <span class="app big"><img src={icon[slug][0]} alt="" style={`object-position:${icon[slug][1]}`} loading="lazy" /></span>
+            <span class="hl-body"><b>{big}</b><span>{text}</span><small>{p.title} →</small></span>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- every side -->
+  <section class="sides" aria-labelledby="sides-h">
+    <h2 id="sides-h">One portfolio<br />for every side of me.</h2>
+    <div class="side-grid">
+      <a class="side" href="/projects"><b>Case studies</b><span class="stack"><img src="/images/lyft/hero.webp" alt="" loading="lazy" /><img src="/images/skate/cover.webp" alt="" loading="lazy" /><img src="/images/stl/cover.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href="/playground"><b>Playground</b><span class="pic"><img src="/images/design/playground.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href="/projects/lock-in"><b>AI + vibe coding</b><span class="pic contain"><img src="/images/lockin/icon.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href="/about"><b>About me</b><span class="pic round"><img src="/images/about/portrait.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href="/playground/design-social"><b>Social + content</b><span class="pic"><img src="/images/design/hero-reels.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href={site.resume || '/resume'} target="_blank" rel="noopener"><b>Resume</b><span class="doc" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero { padding: 168px 20px 64px; text-align: center; }
+  .hero h1 { font-size: clamp(2.8rem, 7vw, 5.6rem); line-height: 1.04; letter-spacing: -0.05em; font-weight: 700; margin: 0 auto 28px; max-width: 1100px; }
+  .chip-img { display: inline-block; width: 0.95em; height: 0.95em; vertical-align: -0.12em; border-radius: 0.24em; overflow: hidden; background: #f2f2f2; box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12), inset 0 0 0 1px rgba(0, 0, 0, 0.06); margin: 0 0.08em; }
+  .chip-img img { width: 100%; height: 100%; object-fit: cover; }
+  /* sunset gradient: berry into creamsicle */
+  .hero .accent, .hero :global(.rt-word) { background: linear-gradient(90deg, #b0125b, #c2410c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero :global(.rt-caret) { color: #c2410c; }
+  .hero :global(.rt-word) { font-style: normal; }
+  .sub { color: #7a7a7a; font-size: clamp(1.1rem, 1.6vw, 1.35rem); line-height: 1.45; margin: 0 auto 36px; }
+  .ctas { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 999px; background: #f1f1f1; color: #111; font-weight: 600; font-size: 1.05rem; text-decoration: none; transition: background 0.2s, transform 0.2s var(--ease); }
+  .pill:hover { transform: translateY(-1px); background: #e8e8e8; }
+  .pill.dark { background: #111; color: #fff; }
+  .pill.dark:hover { background: #2a2a2a; }
+
+  /* library window */
+  .window-wrap { width: min(100% - 32px, 1480px); margin: 20px auto 0; padding: 48px 48px 0; border-radius: 44px; background: #f4f4f4; }
+  .window { background: #fff; border-radius: 28px 28px 0 0; padding: 22px 30px 40px; box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.04); }
+  .w-bar { display: flex; align-items: center; gap: 22px; }
+  .w-logo { position: relative; flex: none; width: 30px; height: 30px; border-radius: 9px; background: #111; }
+  .w-logo i { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: #fff; }
+  .w-logo i:nth-child(1) { top: 7px; left: 7px; } .w-logo i:nth-child(2) { top: 12.5px; left: 12.5px; } .w-logo i:nth-child(3) { bottom: 7px; right: 7px; }
+  .w-tabs { display: flex; gap: 18px; } .w-tabs a { color: #111; text-decoration: none; font-weight: 500; } .w-tabs a + a { color: #8a8a8a; }
+  .w-search { flex: 1; max-width: 460px; margin: 0 auto; display: flex; align-items: center; gap: 10px; padding: 13px 18px; border: 0; border-radius: 999px; background: #f1f1f1; color: #8a8a8a; font: inherit; font-size: 0.98rem; text-align: left; cursor: text; }
+  .w-avatar { flex: none; width: 38px; height: 38px; border-radius: 50%; overflow: hidden; } .w-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .mega { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding: 44px 0 40px; }
+  .mega p { font-size: 0.9rem; color: #8a8a8a; margin-bottom: 10px; }
+  .mega ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+  .mega a, .mega button { padding: 0; border: 0; background: none; color: #111; font: 500 clamp(1.15rem, 1.6vw, 1.45rem) var(--sans); letter-spacing: -0.02em; text-decoration: none; cursor: pointer; text-align: left; }
+  .mega a:hover, .mega button:hover { color: #6e6e6e; }
+  .w-filters { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; margin-bottom: 26px; }
+  .seg { display: inline-flex; padding: 4px; border-radius: 999px; background: #f1f1f1; }
+  .seg button { padding: 7px 14px; border: 0; border-radius: 999px; background: none; color: #8a8a8a; font: 500 0.92rem var(--sans); cursor: pointer; }
+  .seg button[aria-selected='true'] { background: #fff; color: #111; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+  .tabs { display: flex; gap: 22px; flex-wrap: wrap; }
+  .tabs button { padding: 6px 0; border: 0; border-bottom: 2px solid transparent; background: none; color: #8a8a8a; font: 500 1rem var(--sans); cursor: pointer; }
+  .tabs button[aria-selected='true'] { color: #111; border-color: #111; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 22px; }
+  .card { display: block; text-decoration: none; color: #111; }
+  .card[hidden] { display: none; }
+  .frame { display: grid; place-items: center; aspect-ratio: 16 / 11; padding: 22px; border-radius: 26px; background: #f4f4f4; overflow: hidden; }
+  .frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); transition: transform 0.5s var(--ease); }
+  .card:hover .frame img { transform: translateY(-4px); }
+  .meta { display: flex; align-items: center; gap: 12px; padding: 14px 4px 0; }
+  .app { display: block; flex: none; width: 42px; height: 42px; border-radius: 11px; overflow: hidden; background: #eee; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06); }
+  .app img { width: 100%; height: 100%; object-fit: cover; }
+  .meta b { display: block; font-weight: 600; } .meta small { color: #7a7a7a; font-size: 0.86rem; }
+  .empty { grid-column: 1 / -1; color: #7a7a7a; }
+
+  /* statement */
+  .statement { width: min(100% - 40px, 1180px); margin: 0 auto; padding: 150px 0 40px; }
+  .statement p { margin: 0; font-size: clamp(2.2rem, 4.6vw, 3.9rem); font-weight: 700; letter-spacing: -0.045em; line-height: 1.08; }
+  .statement .gray { color: #8a8a8a; margin-top: 0.3em; max-width: 980px; }
+
+  /* highlights */
+  .hl-sec { width: min(100% - 40px, 1180px); margin: 0 auto; padding-top: 90px; }
+  .hl-sec h2 { display: flex; align-items: center; gap: 14px; font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 700; margin-bottom: 36px; }
+  .hl-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .hl-card { position: relative; display: block; padding: 28px 24px 26px; border-radius: 30px; background: #f4f4f4; color: #111; text-decoration: none; transition: transform 0.3s var(--ease); }
+  .hl-card:hover { transform: translateY(-4px); }
+  .app.big { width: 64px; height: 64px; border-radius: 18px; margin-bottom: 40px; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12); }
+  .hl-body b { display: block; font-size: 2.6rem; font-weight: 700; letter-spacing: -0.05em; line-height: 1; margin-bottom: 10px; }
+  .hl-body span { display: block; color: #555; font-size: 0.98rem; line-height: 1.45; }
+  .hl-body small { display: block; margin-top: 18px; font-weight: 600; font-size: 0.92rem; }
+
+  /* every side */
+  .sides { width: min(100% - 40px, 1380px); margin: 0 auto; padding-top: 150px; text-align: center; }
+  .sides h2 { font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; letter-spacing: -0.05em; margin-bottom: 64px; }
+  .side-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .side { position: relative; display: grid; grid-template-rows: auto 1fr; aspect-ratio: 1.08; padding: 32px 28px 0; border-radius: 34px; background: #f4f4f4; color: #111; text-decoration: none; overflow: hidden; transition: background 0.2s; }
+  .side:hover { background: #eeeeee; }
+  .side b { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.03em; }
+  .pic { align-self: end; justify-self: center; width: 78%; height: 78%; border-radius: 16px 16px 0 0; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); }
+  .pic img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+  .pic.contain { width: 46%; height: 62%; align-self: center; border-radius: 28px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18); }
+  .pic.round { width: 52%; height: auto; aspect-ratio: 1; align-self: center; border-radius: 50%; }
+  .stack { position: relative; align-self: center; height: 70%; }
+  .stack img { position: absolute; width: 58%; aspect-ratio: 16 / 10; object-fit: cover; border-radius: 12px; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14); }
+  .stack img:nth-child(1) { left: 4%; top: 18%; transform: rotate(-6deg); }
+  .stack img:nth-child(2) { left: 21%; top: 6%; z-index: 2; }
+  .stack img:nth-child(3) { right: 4%; top: 22%; transform: rotate(6deg); }
+  .doc { align-self: end; justify-self: center; width: 58%; height: 74%; padding: 28px 24px; border-radius: 14px 14px 0 0; background: #fff; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); display: grid; align-content: start; gap: 12px; }
+  .doc i { display: block; height: 10px; border-radius: 5px; background: #ececec; } .doc i:first-child { width: 55%; height: 16px; background: #111; } .doc i:nth-child(3) { width: 80%; } .doc i:nth-child(5) { width: 65%; }
+
+  @media (max-width: 1000px) {
+    .mega { grid-template-columns: repeat(2, 1fr); }
+    .grid, .side-grid { grid-template-columns: repeat(2, 1fr); }
+    .hl-row { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .hero { padding-top: 120px; }
+    .window-wrap { padding: 14px 10px 0; border-radius: 28px; }
+    .window { padding: 16px 16px 28px; border-radius: 20px 20px 0 0; }
+    .w-tabs, .w-avatar { display: none; }
+    .w-search { font-size: 0.9rem; }
+    .grid, .side-grid, .hl-row { grid-template-columns: 1fr; }
+    .frame { padding: 16px; }
+    .side { aspect-ratio: 1.2; }
+  }
+</style>
+
+<script>
+  // Filters: type (segmented) + topic (tabs); Categories in the menu set the topic.
+  const grid = document.querySelector<HTMLElement>('[data-grid]');
+  const kinds = document.querySelector<HTMLElement>('[data-kinds]');
+  const topics = document.querySelector<HTMLElement>('[data-topics]');
+  let kind = 'All', topic = 'All';
+  const apply = () => {
+    let shown = 0;
+    grid?.querySelectorAll<HTMLElement>('.card').forEach((c) => {
+      const ok = (kind === 'All' || c.dataset.kind === kind) && (topic === 'All' || c.dataset.g!.split(' ').includes(topic));
+      c.hidden = !ok;
+      if (ok) shown++;
+    });
+    grid!.querySelector<HTMLElement>('[data-empty]')!.hidden = shown > 0;
+  };
+  const select = (root: HTMLElement | null, btn: HTMLElement) => root?.querySelectorAll('button').forEach((b) => b.setAttribute('aria-selected', String(b === btn)));
+  kinds?.addEventListener('click', (e) => { const b = (e.target as HTMLElement).closest<HTMLElement>('button'); if (!b) return; kind = b.dataset.k!; select(kinds, b); apply(); });
+  topics?.addEventListener('click', (e) => { const b = (e.target as HTMLElement).closest<HTMLElement>('button'); if (!b) return; topic = b.dataset.f!; select(topics, b); apply(); });
+  document.querySelectorAll<HTMLElement>('[data-pick]').forEach((b) => b.addEventListener('click', () => {
+    const t = topics?.querySelector<HTMLElement>(`[data-f="${b.dataset.pick}"]`);
+    if (t) { topic = b.dataset.pick!; select(topics, t); apply(); grid?.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  }));
+</script>

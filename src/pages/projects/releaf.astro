@@ -1,0 +1,120 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import WhatIDid from '../../components/WhatIDid.astro';
+import Video from '../../components/Video.astro';
+---
+<ProductLayout
+  slug="releaf"
+  eyebrow="Startup · Founder"
+  title="ReLeaf Candles"
+  tagline="Candles that have a second life. <strong>Burn it, twist it, grow it.</strong>"
+  hero="/images/releaf/cover.webp"
+  heroAlt="The Canduela candle on a wood slice beside the same jar turned into a lavender planter"
+  overview={[['Context', 'Class project turned startup'], ['Deliverable', 'Product, brand + go-to-market'], ['Tools', 'Excel projections'], ['Team', 'Founding team']]}
+  summary={[
+    ['What I did', 'Founded it. Owned <strong>product</strong>, <strong>branding</strong>, and <strong>go-to-market</strong>.'],
+    ['The problem', 'Millions of <strong>candle jars</strong> end up in landfills every year.'],
+    ['The result', '<strong>4th</strong> in an international business plan competition, then <strong>SVC finalist</strong> at WashU.'],
+  ]}
+>
+  <WhatIDid heading='Founder, start to finish.' items={[
+    ['Founded it', 'Took a <strong>class project</strong> to a startup, owning <strong>product</strong>, <strong>branding</strong> and <strong>go-to-market</strong>.'],
+    ['Talked to customers', '<strong>146 survey responses</strong> and discovery interviews, which shaped the twist-open jar. <strong>26 customers</strong> so far.'],
+    ['Pitched it', '<strong>4th</strong> in an international business plan competition, then <strong>Top 16 of 131</strong> at the Skandalaris Venture Competition.'],
+  ]} />
+
+  <section class="chapter">
+    <span class="num">Why this problem</span>
+    <p class="pull">As an avid candle user, I had <span class="hl">no use for my jars</span> once the candle was gone. That’s why the duality is perfect.</p>
+    <p>It began as a <strong>class project</strong> and grew into a <strong>passion startup</strong>.</p>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">01 · Process</span>
+    <h2>Problem first, product second.</h2>
+    <p>We didn’t start with a candle. We started with a <strong>problem in the world</strong>, found through research and observation.</p>
+    <ol class="band ideas" style="--n:5">
+      <li><span class="n">01</span><b>Identify</b><span>Research + observation</span></li>
+      <li><span class="n">02</span><b>Ideate</b><span>Many ideas, fast</span></li>
+      <li><span class="n">03</span><b>Stress-test</b><span>Until we were happy</span></li>
+      <li><span class="n">04</span><b>Build</b><span>Business plan + brand kit</span></li>
+      <li class="kept"><span class="n">05</span><b>Show it</b><span>Mock trade shows</span></li>
+    </ol>
+    <div class="learn"><b>What I learned</b><p>Stress-test an idea before you fall in love with it.</p></div>
+  </section>
+
+  <section class="chapter">
+    <span class="num">02 · The product</span>
+    <h2>Light it. Twist it. Grow it.</h2>
+    <p>The base twists open to reveal <strong>seeds and drainage</strong>. The lid becomes a water plate. Or bury the whole jar: it’s <strong>biodegradable</strong>.</p>
+    <figure class="band"><img src="/images/releaf/how-it-works.webp" alt="Illustrated three-step guide: light the candle, twist the bottom to reveal seeds, add soil and watch it grow" loading="lazy" /></figure>
+    <figure class="band"><img src="/images/releaf/lineup.webp" alt="Four ReLeaf candles, Spearmint, Rosemary, Calendula and Lavender, on a podium with mailer boxes" loading="lazy" class="square" /><figcaption>Rosemary, spearmint, lavender, and calendula.</figcaption></figure>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">03 · Iteration</span>
+    <h2>It didn’t work the first time.</h2>
+    <p>Some days nothing worked. I learned <strong>manufacturing</strong>, <strong>patenting</strong>, and <strong>Excel projections</strong> along the way.</p>
+    <div class="band cols three">
+      <figure><img src="/images/releaf/cad.webp" alt="3D CAD models of several jar, lid and base variations" loading="lazy" /><figcaption><strong>Idea:</strong> 3D models</figcaption></figure>
+      <figure><img src="/images/releaf/first-print.webp" alt="Early clay-toned prototype jars" loading="lazy" /><figcaption><strong>First print</strong></figcaption></figure>
+      <figure><img src="/images/releaf/hero.webp" alt="Refined Canduela candle and lavender planter" loading="lazy" /><figcaption><strong>Refined</strong></figcaption></figure>
+    </div>
+    <div class="learn"><b>What I learned</b><p>Failure is part of the process. Each broken prototype got me closer.</p></div>
+  </section>
+
+  <section class="chapter">
+    <span class="num">04 · Validation</span>
+    <h2>Real people, real feedback.</h2>
+    <p><strong>Customer discovery</strong> validated the idea before I built more of it.</p>
+    <div class="band bigstats four">
+      <div><b>146</b><span>survey responses</span></div>
+      <div><b>6</b><span>discovery interviews</span></div>
+      <div><b>26</b><span>customers from trade shows</span></div>
+      <div><b>3</b><span>potential investors</span></div>
+    </div>
+    <div class="band cols">
+      <figure><img src="/images/releaf/tradeshow.webp" alt="The ReLeaf team in green polos at their trade show booth" loading="lazy" /><figcaption>Our <strong>trade show booth</strong></figcaption></figure>
+      <Video name="releaf-booth" label="Walkthrough of the ReLeaf trade show booth" caption="Booth walkthrough" />
+    </div>
+    <div class="learn"><b>What I learned</b><p>Listen for pain points. People tell you what they need if you ask.</p></div>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">05 · Brand</span>
+    <h2>A flame that becomes a leaf.</h2>
+    <figure class="band"><img src="/images/releaf/logo.webp" alt="ReLeaf Candles primary logo" loading="lazy" class="logo" /></figure>
+    <figure class="band"><img src="/images/releaf/brand-guide.webp" alt="Brand guide: logos, six-color palette, RoxboroughCF and Belleza fonts" loading="lazy" /><figcaption><strong>RoxboroughCF</strong> for headings, <strong>Belleza</strong> for body.</figcaption></figure>
+    <figure class="band"><img src="/images/releaf/packaging.webp" alt="Packaging: mailer box with a candle-to-plant cycle graphic and a lid card" loading="lazy" /></figure>
+    <figure class="band"><img src="/images/releaf/social.webp" alt="ReLeaf Instagram: tradeshow story, profile, and launch post" loading="lazy" /><figcaption>I ran ReLeaf’s <strong>Instagram and TikTok</strong>.</figcaption></figure>
+  </section>
+
+  <section class="chapter">
+    <span class="num">06 · Traction</span>
+    <h2>From class project to WashU finals.</h2>
+    <div class="band bigstats">
+      <div><b>4th</b><span>Virtual Enterprise International business plan competition</span></div>
+      <div><b>Top 16</b><span>of 131, Skandalaris Venture Competition finalist</span></div>
+      <div><b>Winner</b><span>IdeaBounce, live pitch</span></div>
+    </div>
+    <div class="band mycall">
+      <span class="num">What I’m proud of</span>
+      <p class="pull">I kept going with the idea. I came out of my comfort zone and talked to customers and investors <span class="hl">without fear</span>.</p>
+    </div>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">Takeaways</span>
+    <h2>What I’m taking with me.</h2>
+    <ol class="band takeaways-big" style="max-width:var(--text)">
+      <li>Start with a real problem, not a product.</li>
+      <li>Validate with real people early.</li>
+      <li>Confidence is built by pitching, again and again.</li>
+    </ol>
+  </section>
+</ProductLayout>
+
+<style>
+  img.square { max-width: 620px; margin: 0 auto; }
+  img.logo { max-width: 360px; margin: 0 auto; }
+</style>

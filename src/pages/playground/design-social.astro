@@ -1,0 +1,99 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import Video from '../../components/Video.astro';
+import InstagramEmbed from '../../components/InstagramEmbed.astro';
+
+const posters = [
+  ['/images/design/tinydesk-black.webp', 'Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black', '<strong>WUTV</strong> · Tiny Desk, <strong>direction A</strong>'],
+  ['/images/design/tinydesk-blue.webp', 'Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code', '<strong>WUTV</strong> · Same brief, <strong>direction B</strong>'],
+  ['/images/design/kiki-bouba.webp', 'Poster: Find the Kiki to your Bouba. Apply for the SVC, with chrome star and blob shapes', '<strong>Skandalaris</strong> · The <strong>bouba/kiki effect</strong> pitches finding a co-founder'],
+  ['/images/design/perform.webp', 'Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts', '<strong>WUTV</strong> · <strong>Performer call</strong>'],
+];
+
+const asb = [
+  ['/images/design/asb-love-like-a-viking.webp', 'Spirit week graphic: Love Like a Viking, 2/11 to 2/14, a red heart in a pink bow stamp frame', '<strong>Spirit week</strong> · Love Like a Viking'],
+  ['/images/design/asb-duo-day.webp', 'Duo Day Wednesday graphic with Grease and La La Land couples on a torn paper heart collage', '<strong>Spirit week</strong> · Duo Day'],
+  ['/images/design/asb-ice-cream-social.webp', 'Think Gold Ice Cream Social flyer, February 21, with a retro sundae illustration and dripping frosting', '<strong>Event flyer</strong> · Ice Cream Social'],
+];
+
+const wutvPosts = [
+  { url: 'https://www.instagram.com/reel/Dde_t3GvLN8/', label: 'WUTV reel' },
+  { url: 'https://www.instagram.com/reel/Dc4jpf8OLX8/', label: 'WUTV reel' },
+  { url: 'https://www.instagram.com/p/DdbsiaMjrf7/', label: 'WUTV post' },
+];
+---
+<ProductLayout
+  slug="design-social"
+  section="playground"
+  eyebrow="Posters, reels + recap videos"
+  title="Design + Social"
+  tagline="<strong>4+ years</strong> of content. I run social for the <strong>Skandalaris Center</strong> and <strong>WUTV</strong>."
+  hero="/images/design/hero-reels.webp"
+  heroAlt="Three social reels side by side for the Skandalaris Center, WUTV, and West High ASB"
+  summary={[
+    ['Reach', '<strong>1,000+</strong> average views per Skandalaris post.'],
+    ['Growth', 'A WUTV brand refresh grew membership <strong>3 → 20</strong>.'],
+    ['Since', 'Editing video since <strong>2020</strong>.'],
+  ]}
+>
+  <section class="chapter">
+    <span class="num">01 · Posters</span>
+    <h2>Made to get sign-ups.</h2>
+    <div class="band posters">
+      {posters.map(([src, alt, cap]) => (
+        <figure><img src={src} alt={alt} loading="lazy" /><figcaption set:html={cap}></figcaption></figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">02 · Banners</span>
+    <h2>WUTV, on every screen.</h2>
+    <figure class="band"><img src="/images/design/wutv-banner.webp" alt="WUTV banner: a retro TV with the WUTV logo, We do things, and general body meetings Wednesdays 5:30 PM and Fridays 5:00 PM" loading="lazy" /></figure>
+  </section>
+
+  <section class="chapter">
+    <span class="num">03 · On Instagram</span>
+    <h2>Live on the WUTV feed.</h2>
+    <p>I run the <strong>WUTV</strong> account. Here’s what’s posted right now.</p>
+    <div class="band"><InstagramEmbed posts={wutvPosts} handle="wutv_22" /></div>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">04 · Reels</span>
+    <h2>Pacing is everything.</h2>
+    <p>Film edits for fun in 2020 became <strong>recaps and reels</strong> built on pacing and emotion.</p>
+    <div class="band reels">
+      <Video name="skandalaris-welcome" frame="phone" label="Animated welcome post: Welcome! Your journey starts here" caption="Skandalaris · Welcome post" />
+      <Video name="skandalaris-ie-awards" frame="phone" label="TikTok promoting the WashU I&E Awards" caption="Skandalaris · I&E Awards" />
+      <Video name="wutv-tiny-desk" frame="phone" label="TikTok: sign up for our Tiny Desk Concert" caption="WUTV · Tiny Desk sign-ups" />
+    </div>
+  </section>
+
+  <section class="chapter">
+    <span class="num">Where it started</span>
+    <h2>High school ASB.</h2>
+    <p><strong>Spirit week graphics</strong>, flyers, and recaps for <strong>West High ASB</strong>, where I first learned to tell a story in 15 seconds.</p>
+    <div class="band asb">
+      {asb.map(([src, alt, cap]) => (
+        <figure><span><img src={src} alt={alt} loading="lazy" /></span><figcaption set:html={cap}></figcaption></figure>
+      ))}
+    </div>
+    <div class="band reels two">
+      <Video name="asb-home-game" frame="phone" label="First home game recap reel" caption="Home game recap" />
+      <Video name="asb-staff-breakfast" frame="phone" label="Staff appreciation breakfast recap reel" caption="Staff breakfast recap" />
+    </div>
+  </section>
+</ProductLayout>
+
+<style>
+  .posters { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 32px; text-align: left; }
+  .posters figure { margin: 0; }
+  img.narrow { max-width: 460px; margin: 0 auto; }
+  .reels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; text-align: left; }
+  .asb { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; text-align: left; }
+  .asb figure { margin: 0; }
+  .asb span { display: flex; align-items: center; aspect-ratio: 4 / 5; }
+  .reels.two { grid-template-columns: repeat(2, 1fr); max-width: 640px; }
+  @media (max-width: 640px) { .asb { grid-template-columns: 1fr; } .posters { grid-template-columns: 1fr; } .reels { grid-template-columns: repeat(2, 1fr); gap: 16px; } }
+</style>

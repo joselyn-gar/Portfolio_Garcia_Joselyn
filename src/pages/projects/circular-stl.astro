@@ -1,0 +1,89 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import WhatIDid from '../../components/WhatIDid.astro';
+---
+<ProductLayout
+  slug="circular-stl"
+  eyebrow="Real client · Sustainability in Business"
+  title="#AroundSTL"
+  tagline="A social campaign that helps St. Louis see <strong>unused stuff as value</strong>, for CircularSTL’s proposed Circularity District."
+  hero="/images/stl/cover.webp"
+  heroAlt="The four #AroundSTL Instagram posts side by side"
+  overview={[['Context', 'Class with a real client'], ['Deliverable', 'Social campaign + effectiveness study'], ['Research', '16-question survey, 31 people'], ['Team', 'Team project']]}
+  summary={[
+    ['What I did', 'Headed <strong>ideation</strong>, the <strong>mockups</strong>, and the <strong>survey</strong>.'],
+    ['The problem', 'People didn’t understand what a <strong>Circularity District</strong> was.'],
+    ['The result', '<strong>4.15/5</strong> favorability, and a <strong>happy client</strong>.'],
+  ]}
+>
+  <WhatIDid heading='Campaign, mockups, proof.' items={[
+    ['Headed ideation', 'Shaped the <strong>#AroundSTL</strong> campaign and its tagline for the proposed Circularity District.'],
+    ['Made the mockups', 'Designed the <strong>Instagram carousel</strong> posts that explain the District in four swipes.'],
+    ['Ran the survey', 'A <strong>16-question survey</strong> with <strong>31 respondents</strong>, written up in the <a href="/files/circular-stl-report.pdf" target="_blank" rel="noopener">full report ↗</a>.'],
+  ]} />
+
+  <section class="chapter">
+    <span class="num">Why this problem</span>
+    <p class="pull">I took this class for my <span class="hl">love of sustainability</span>. We got a real client, and my team chose marketing.</p>
+    <p>Team: <strong>Joselyn Garcia</strong>, Maddie Elhaik, Gia Grillo, for CircularSTL and the Circularity District Task Force.</p>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">01 · Channel</span>
+    <h2>Pick where people already are.</h2>
+    <p>CircularSTL’s own report called out a <strong>messaging gap</strong>. We compared three channels before designing anything.</p>
+    <ol class="band ideas" style="--n:3">
+      <li class="out"><b>Posters</b><span>Good recall, but stuck in one place.</span></li>
+      <li class="out"><b>Email</b><span>Needs an audience that already exists.</span></li>
+      <li class="kept"><b>Instagram</b><span>Geo-targeted, visual, and built for <strong>conversation</strong>.</span></li>
+    </ol>
+    <div class="learn"><b>What I learned</b><p>Choose the channel before the creative. It decides everything after.</p></div>
+  </section>
+
+  <section class="chapter">
+    <span class="num">02 · The campaign</span>
+    <h2>What goes around should come back around.</h2>
+    <p>We framed circularity as a <strong>money win</strong>, not only a green one. Four posts: hook, math, what it does, call to action.</p>
+    <div class="band cols four">
+      <figure><img src="/images/stl/slide-1.webp" alt="Post 1: Let's talk junk. Your stuff is worth way more." loading="lazy" /><figcaption><strong>Hook</strong></figcaption></figure>
+      <figure><img src="/images/stl/slide-2.webp" alt="Post 2: The average household has $3,100 in unused items" loading="lazy" /><figcaption><strong>The math</strong></figcaption></figure>
+      <figure><img src="/images/stl/slide-3.webp" alt="Post 3: Donate, repair, circulate, all in one place" loading="lazy" /><figcaption><strong>What it does</strong></figcaption></figure>
+      <figure><img src="/images/stl/slide-4.webp" alt="Post 4: In St. Louis, what goes around should come back around" loading="lazy" /><figcaption><strong>The call</strong></figcaption></figure>
+    </div>
+    <div class="learn"><b>What I learned</b><p>People act on personal value. Lead with what’s in it for them.</p></div>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">03 · Testing</span>
+    <h2>We asked the community.</h2>
+    <p>A <strong>16-question survey</strong>, 31 respondents, before and after seeing the campaign.</p>
+    <div class="band bigstats">
+      <div><b>4.15</b><span>out of 5 favorability</span></div>
+      <div><b>~80%</b><span>said the tagline read as circular</span></div>
+      <div><b>10%</b><span>felt it was rooted in St. Louis</span></div>
+    </div>
+    <div class="band mycall">
+      <span class="num">The honest gap</span>
+      <p class="pull">Only 10% felt it was <span class="hl">St. Louis</span>. Some confused it with Goodwill.</p>
+      <p class="answer">So our recommendations: go more local, name what makes the District different, and give a clear next step.</p>
+    </div>
+    <div class="learn"><b>What I learned</b><p>Testing is most useful when it shows you where you fell short.</p></div>
+  </section>
+
+  <section class="chapter">
+    <span class="num">04 · The client</span>
+    <h2>Making the client happy.</h2>
+    <p>We shared the survey results in our final presentation, and <strong>the client was happy</strong>. That’s the part I love most: <strong>client-facing work</strong>.</p>
+    <p><a class="btn ghost" href="/files/circular-stl-report.pdf" target="_blank" rel="noopener">Read the full report (PDF) ↗</a></p>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">Takeaways</span>
+    <h2>What I’m taking with me.</h2>
+    <ol class="band takeaways-big" style="max-width:var(--text)">
+      <li>Entrepreneurial problems are freeing. I like tackling them.</li>
+      <li>Real clients raise the bar, in a good way.</li>
+      <li>Community feedback turns a pitch into proof.</li>
+    </ol>
+  </section>
+</ProductLayout>

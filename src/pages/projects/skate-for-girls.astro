@@ -1,0 +1,115 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+import WhatIDid from '../../components/WhatIDid.astro';
+import Video from '../../components/Video.astro';
+import SkateNav from '../../components/SkateNav.astro';
+---
+<ProductLayout
+  slug="skate-for-girls"
+  eyebrow="UX consulting · WashUX"
+  title="SKATE for Girls"
+  tagline="A website redesign that makes <strong>giving easy to find</strong> for a nonprofit teaching math through figure skating."
+  hero="/images/skate/cover.webp"
+  heroAlt="The redesigned SKATE for Girls homepage: girls on the ice beside a purple card reading Empowering girls through math on ice and confidence in the classroom"
+  overview={[['Context', 'WashUX consulting · nonprofit client'], ['Deliverable', 'Homepage prototype + recommendations'], ['Tools', 'Figma, Canva, Wix'], ['Team', 'WashUX team']]}
+  summary={[
+    ['What I did', 'Led the <strong>homepage design</strong>, ran <strong>discovery interviews</strong>, and wrote the <strong>survey</strong>.'],
+    ['The problem', '<strong>45%</strong> of visitors couldn’t find the Donate button.'],
+    ['The result', 'A <strong>prototype</strong> and recommendations the client can ship on <strong>Wix</strong>.'],
+  ]}
+>
+  <WhatIDid heading='Research in, design out.' items={[
+    ['Wrote the survey', '<strong>38 responses</strong>. It showed <strong>45%</strong> of visitors couldn’t find Donate.'],
+    ['Ran discovery', 'A <strong>1:1 interview</strong> with a former competitive skater, focused on the pages donors use most.'],
+    ['Led the homepage', 'From <strong>wireframe</strong> to <strong>final design</strong> to a clickable <strong>prototype</strong> the client can ship on Wix.'],
+  ]} />
+
+  <section class="chapter">
+    <span class="num">Why this project</span>
+    <p class="pull">I joined to <span class="hl">learn UI/UX</span>. It was my first time doing web work, and I knew I wanted something creative.</p>
+  </section>
+
+  <section class="chapter">
+    <span class="num">01 · Research</span>
+    <h2>Listen first.</h2>
+    <p>A <strong>38-response survey</strong> and a <strong>1:1 interview</strong> with a former competitive skater, focused on the pages donors use most.</p>
+    <div class="band bigstats">
+      <div><b>38</b><span>survey responses</span></div>
+      <div><b>45%</b><span>couldn’t find Donate</span></div>
+      <div><b>40%</b><span>found parts of About unnecessary</span></div>
+    </div>
+    <div class="band">
+      <p class="pull">People saw the menu as a cluster of options, and weren’t sure if the contact form was also how to donate.<cite>From the survey and interview</cite></p>
+    </div>
+    <div class="learn"><b>What I learned</b><p>Numbers show where people get stuck. Talking to them shows why.</p></div>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">02 · Navigation</span>
+    <h2>Make giving obvious.</h2>
+    <p>The nav was the biggest lever. Donate was buried behind <strong>“Support”</strong>, in a row of six equal links.</p>
+    <figure class="band">
+      <img src="/images/skate/original-nav.webp" alt="Original SKATE for Girls navigation: a purple bar with Home, About, Programs, Impact, Support and Contact as equal text links" loading="lazy" />
+      <figcaption><strong>Before:</strong> six equal links. Nothing tells a donor where to go.</figcaption>
+    </figure>
+    <div class="band"><SkateNav /></div>
+    <p class="after-cap"><strong>After:</strong> try the links. This is a live rebuild of my redesign.</p>
+    <ol class="band decisions">
+      <li><i>1</i><div><b>Fewer, clearer links</b><span>Cut “Home” (the logo does that job) and replaced vague “Support” with <strong>News Room</strong>.</span></div></li>
+      <li><i>2</i><div><b>Donate as a button</b><span>A filled pill beside Contact, so the <strong>one action that matters</strong> stands out.</span></div></li>
+      <li><i>3</i><div><b>Sticky on every page</b><span>The nav stays pinned, so Donate is <strong>always one click away</strong>. This answered the 45%.</span></div></li>
+    </ol>
+    <div class="learn"><b>What I learned</b><p>Navigation is a priority list. If everything looks equal, nothing gets clicked.</p></div>
+  </section>
+
+  <section class="chapter">
+    <span class="num">03 · Sketches</span>
+    <h2>Every sketch answers a finding.</h2>
+    <p>Lo-fi first, then <strong>feedback sessions with the client</strong> before anything got polished.</p>
+    <div class="band cols">
+      <figure><img src="/images/skate/donate-sketches.webp" alt="Hand-drawn Donate page sketches with $50, $75 and $100 giving tiers" loading="lazy" /><figcaption><strong>Donate:</strong> tiers turn a gift into an outcome. $100 covers one student.</figcaption></figure>
+      <figure><img src="/images/skate/about-sketches.webp" alt="Hand-drawn About page sketches with a one-sentence mission, a mission video and a press slider" loading="lazy" /><figcaption><strong>About:</strong> one-sentence mission, a video, and a press slider.</figcaption></figure>
+    </div>
+    <figure class="band">
+      <img src="/images/skate/impact-options.webp" alt="Four grayscale Impact page wireframes with different testimonial placements" loading="lazy" />
+      <figcaption><strong>Impact:</strong> four testimonial layouts, tested before choosing one.</figcaption>
+    </figure>
+    <div class="learn"><b>What I learned</b><p>Explore a few options cheaply before committing to one.</p></div>
+  </section>
+
+  <section class="chapter tinted">
+    <span class="num">04 · Homepage</span>
+    <h2>From cluttered to clear.</h2>
+    <p>My lead piece. An <strong>impact statement</strong> up top, then Move / Skate / Learn, student stories, and <strong>Join, Mentor, Donate</strong>.</p>
+    <figure class="band">
+      <img src="/images/skate/original-home.webp" alt="Original SKATE for Girls homepage: the acronym on a purple card beside a blurry photo of ice" loading="lazy" />
+      <figcaption><strong>Before:</strong> the acronym and an ice photo. No people, no clear next step.</figcaption>
+    </figure>
+    <div class="band cols tall">
+      <figure><img src="/images/skate/home-wireframe.webp" alt="Full grayscale mid-fidelity homepage wireframe" loading="lazy" /><figcaption><strong>Wireframe</strong></figcaption></figure>
+      <figure><img src="/images/skate/final.webp" alt="Full final homepage design in purple and aqua" loading="lazy" /><figcaption><strong>Final</strong></figcaption></figure>
+    </div>
+    <div class="band"><Video name="skate-prototype" frame="browser" label="Screen recording scrolling through the redesigned SKATE for Girls homepage prototype" caption="The prototype in motion." /></div>
+    <div class="learn"><b>What I learned</b><p>Real constraints (Wix) make better design. Every idea had to be shippable.</p></div>
+  </section>
+
+  <section class="chapter">
+    <span class="num">Takeaways</span>
+    <h2>What I’m taking with me.</h2>
+    <div class="band mycall">
+      <span class="num">The surprise</span>
+      <p class="pull">I’ve always gone from <span class="hl">lo-fi sketches to polished work</span>. I didn’t know that was a UX process, too.</p>
+      <p class="answer">It was my first time with <strong>web flows</strong> and <strong>affinity diagrams</strong>, and my <strong>customer discovery</strong> skills carried straight over.</p>
+    </div>
+    <ol class="band takeaways-big" style="max-width:var(--text)">
+      <li>Turn research into design decisions, not decoration.</li>
+      <li>Design for the client’s real tools and team.</li>
+      <li>Put the one action that matters where no one can miss it.</li>
+    </ol>
+  </section>
+</ProductLayout>
+
+<style>
+  .after-cap { margin-top: 16px !important; font-size: 1rem !important; }
+  .cols.tall { max-width: 820px; }
+</style>
