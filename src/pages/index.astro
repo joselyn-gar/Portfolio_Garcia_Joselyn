@@ -3,23 +3,23 @@
 // filters, a big statement, highlight cards, and a grid of every side of the portfolio.
 import Base from '../layouts/Base.astro';
 import RotatingText from '../components/RotatingText.astro';
-import { items, caseStudies, playground } from '../data/projects';
+import { items, projects, playground } from '../data/projects';
 import { site } from '../data/site';
 
 const words = ['curiosity and creativity.', 'innovation and impact.', 'purpose and passion.'];
 const groups: Record<string, string[]> = {
   lyft: ['UX', 'Marketing'], releaf: ['Brand', 'Marketing'], 'skate-for-girls': ['UX'], 'lock-in': ['UX', 'AI'],
-  'circular-stl': ['Marketing'], 'design-social': ['Marketing', 'Design'], motifme: ['AI', 'Design'],
+  'circular-stl': ['Marketing'], social: ['Marketing'], design: ['Design'], motifme: ['AI', 'Design'],
 };
 const filters = ['All', 'UX', 'Marketing', 'Brand', 'AI', 'Design'];
 // small "app icon" crops of each project's own artwork
 const icon: Record<string, [string, string]> = {
   lyft: ['/images/lyft/hero.webp', '62% 40%'], releaf: ['/images/releaf/cover.webp', '8% 50%'],
   'skate-for-girls': ['/images/skate/cover.webp', '22% 45%'], 'lock-in': ['/images/lockin/app-icon.webp', 'center'],
-  'circular-stl': ['/images/stl/logo.webp', 'center'], 'design-social': ['/images/design/tinydesk-blue.webp', 'center'],
+  'circular-stl': ['/images/stl/logo.webp', 'center'], social: ['/images/design/hero-reels.webp', 'center'],
+  design: ['/images/design/tinydesk-blue.webp', 'center'],
   motifme: ['/images/playground/motifme/icon.webp', 'center'],
 };
-const cover: Record<string, string> = { 'design-social': '/images/design/playground.webp' };
 const skills = [['User research', 'research'], ['Prototyping', 'prototype'], ['Campaign strategy', 'campaign'], ['Branding', 'brand'], ['Prompt design', 'AI']];
 const highlights = [
   ['lyft', '720%', 'projected ROI for a feature built on what Lyft already owns'],
@@ -48,7 +48,7 @@ const byslug = (s: string) => items.find((i) => i.slug === s)!;
     <div class="window">
       <div class="w-bar">
         <span class="w-logo" aria-hidden="true">JG</span>
-        <span class="w-tabs"><a href="/projects">Case studies</a><a href="/playground">Playground</a></span>
+        <span class="w-tabs"><a href="/projects">Projects</a><a href="/playground">Playground</a></span>
         <button class="w-search" type="button" data-search-open>
           <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M20 20l-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
           Search my work, skills or tools…
@@ -58,7 +58,7 @@ const byslug = (s: string) => items.find((i) => i.slug === s)!;
 
       <div class="mega">
         <div><p>Categories</p><ul>{filters.slice(1).map((f) => <li><button type="button" data-pick={f}>{f === 'AI' ? 'AI + vibe coding' : f}</button></li>)}</ul></div>
-        <div><p>Case studies</p><ul>{caseStudies.map((c) => <li><a href={c.href}>{c.short}</a></li>)}</ul></div>
+        <div><p>Projects</p><ul>{projects.map((c) => <li><a href={c.href}>{c.short}</a></li>)}</ul></div>
         <div><p>Skills</p><ul>{skills.map(([label, q]) => <li><button type="button" data-search-open data-q={q}>{label}</button></li>)}</ul></div>
         <div><p>More</p><ul>{playground.map((c) => <li><a href={c.href}>{c.short}</a></li>)}<li><a href="/about">About me</a></li><li><a href={site.linkedin} target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
       </div>
@@ -66,7 +66,7 @@ const byslug = (s: string) => items.find((i) => i.slug === s)!;
       <div class="w-filters">
         <div class="seg" role="tablist" aria-label="Filter by type" data-kinds>
           <button type="button" role="tab" aria-selected="true" data-k="All">All</button>
-          <button type="button" role="tab" aria-selected="false" data-k="Case study">Case studies</button>
+          <button type="button" role="tab" aria-selected="false" data-k="Project">Projects</button>
           <button type="button" role="tab" aria-selected="false" data-k="Playground">Playground</button>
         </div>
         <div class="tabs" role="tablist" aria-label="Filter by topic" data-topics>
@@ -77,10 +77,10 @@ const byslug = (s: string) => items.find((i) => i.slug === s)!;
       <div class="grid" data-grid>
         {items.map((p) => (
           <a class="card" href={p.href} data-g={groups[p.slug].join(' ')} data-kind={p.kind} data-face={p.face}>
-            <span class="frame"><img src={cover[p.slug] || p.cover} alt="" loading="lazy" /></span>
+            <span class="frame"><img src={p.cover} alt="" loading="lazy" /></span>
             <span class="meta">
               <span class="app"><img src={icon[p.slug][0]} alt="" style={`object-position:${icon[p.slug][1]}`} loading="lazy" /></span>
-              <span><b>{p.title}</b><small>{p.kind} · {p.tags.slice(0, 2).join(', ')}</small></span>
+              <span><b>{p.title}</b><small>{p.category} · {p.sub}</small></span>
             </span>
           </a>
         ))}
@@ -115,11 +115,11 @@ const byslug = (s: string) => items.find((i) => i.slug === s)!;
   <section class="sides" aria-labelledby="sides-h">
     <h2 id="sides-h">One portfolio<br />for every side of me.</h2>
     <div class="side-grid">
-      <a class="side" href="/projects"><b>Case studies</b><span class="stack"><img src="/images/lyft/hero.webp" alt="" loading="lazy" /><img src="/images/skate/cover.webp" alt="" loading="lazy" /><img src="/images/stl/cover.webp" alt="" loading="lazy" /></span></a>
-      <a class="side" href="/playground"><b>Playground</b><span class="pic"><img src="/images/design/playground.webp" alt="" loading="lazy" /></span></a>
-      <a class="side" href="/projects/lock-in"><b>AI + vibe coding</b><span class="pic contain"><img src="/images/lockin/app-icon.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href="/projects"><b>Projects</b><span class="stack"><img src="/images/lyft/hero.webp" alt="" loading="lazy" /><img src="/images/skate/cover.webp" alt="" loading="lazy" /><img src="/images/stl/cover.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href="/playground"><b>Playground</b><span class="pic contain"><img src="/images/lockin/app-icon.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href="/projects/design"><b>Design</b><span class="pic"><img src="/images/design/playground.webp" alt="" loading="lazy" /></span></a>
       <a class="side" href="/about"><b>About me</b><span class="pic round"><img src="/images/about/portrait.webp" alt="" loading="lazy" /></span></a>
-      <a class="side" href="/playground/design-social"><b>Social + content</b><span class="pic"><img src="/images/design/hero-reels.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href="/projects/social"><b>Social media</b><span class="pic"><img src="/images/design/hero-reels.webp" alt="" loading="lazy" /></span></a>
       <a class="side" href={site.resume || '/resume'} target="_blank" rel="noopener"><b>Resume</b><span class="doc" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></a>
     </div>
   </section>

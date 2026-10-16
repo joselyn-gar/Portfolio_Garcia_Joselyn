@@ -1,0 +1,43 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+
+const posters = [
+  ['/images/design/tinydesk-black.webp', 'Poster: WUTV Tiny Desk Concert featuring Irene Han, with a blue retro microphone on black', '<strong>WUTV</strong> · Tiny Desk, <strong>direction A</strong>'],
+  ['/images/design/tinydesk-blue.webp', 'Poster: WUTV Tiny Desk Concert on textured blue with a retro TV and QR code', '<strong>WUTV</strong> · Same brief, <strong>direction B</strong>'],
+  ['/images/design/kiki-bouba.webp', 'Poster: Find the Kiki to your Bouba. Apply for the SVC, with chrome star and blob shapes', '<strong>Skandalaris</strong> · The <strong>bouba/kiki effect</strong> pitches finding a co-founder'],
+  ['/images/design/perform.webp', 'Poster: Can you sing? Play an instrument? Maybe both? Well, perform! WUTV Tiny Desk Concerts', '<strong>WUTV</strong> · <strong>Performer call</strong>'],
+];
+
+---
+<ProductLayout
+  slug="design"
+  eyebrow="Creative content · Graphic design"
+  title="Design"
+  tagline="<strong>Posters</strong>, a <strong>banner</strong> and a <strong>print</strong> for WUTV, the Skandalaris Center and more."
+  hero="/images/design/wutv-banner.webp"
+  heroAlt="WUTV banner: a retro TV with the WUTV logo, We do things, and general body meetings Wednesdays 5:30 PM and Fridays 5:00 PM"
+>
+  <section class="chapter">
+    <h2>Posters</h2>
+    <p class="lead">Made to get sign-ups.</p>
+    <div class="band posters">
+      {posters.map(([src, alt, cap]) => (
+        <figure><img src={src} alt={alt} loading="lazy" /><figcaption set:html={cap}></figcaption></figure>
+      ))}
+    </div>
+  </section>
+
+  <section class="chapter">
+    <h2>Print</h2>
+    <p class="lead">A 60s mod portrait.</p>
+    <p>A <strong>posterized print</strong> built from a photo reference.</p>
+    <figure class="band"><img src="/images/design/mod-portrait.webp" alt="Posterized print of a 60s mod woman in round sunglasses and a bold circle-print top, with the photo reference inset" loading="lazy" class="narrow" /></figure>
+  </section>
+</ProductLayout>
+
+<style>
+  .posters { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px 32px; text-align: left; }
+  .posters figure { margin: 0; }
+  img.narrow { max-width: 460px; margin: 0; }
+  @media (max-width: 640px) { .posters { grid-template-columns: 1fr; } }
+</style>

@@ -5,27 +5,27 @@ import { playground } from '../../data/projects';
 const pages = playground;
 
 const img: Record<string, string> = {
-  'design-social': '/images/design/playground.webp',
+  'lock-in': '/images/lockin/desk-06-today.webp',
   motifme: '/images/playground/motifme/01-home-dashboard.png',
 };
 const alt: Record<string, string> = {
-  'design-social': 'Two event posters side by side',
+  'lock-in': 'Lock In Today screen with a Start Daily Session button, the star mascot and upcoming exams',
   motifme: 'MotifMe home dashboard with a motif studio, pattern repeats and mockups',
 };
 ---
-<Base title="Playground" active="playground" description="Textiles, posters and reels by Joselyn Garcia.">
+<Base title="Playground" active="playground" description="Passion products Joselyn Garcia designed and built by vibe coding.">
   <header class="head">
     <p class="eyebrow">Playground</p>
     <h1>The playground.</h1>
-    <p class="lede">The creative side: <strong>prints</strong>, <strong>posters</strong>, <strong>reels</strong>, and <strong>vibe-coded tools</strong>.</p>
+    <p class="lede">Passion products I <strong>vibe code</strong>. I design them, then build them by <strong>directing AI</strong>.</p>
   </header>
 
   <section class="wrap rows" aria-label="Playground work">
     {pages.map((p, i) => (
       <a class:list={['row', { flip: i % 2 === 1 }]} href={p.href} data-face={p.face} style={`--ct:var(--${p.color}-text);--t:var(--${p.color}-tint)`}>
-        <span class="img"><img src={img[p.slug]} alt={alt[p.slug]} loading="lazy" /></span>
+        <span class="img"><img src={img[p.slug]} alt={alt[p.slug]} loading="lazy" style="object-position: left top" /></span>
         <span class="copy">
-          <span class="tags">{p.tags.join(' · ')}</span>
+          <span class="tags">{[p.category, ...p.tags.filter((t) => t !== p.category)].join(' · ')}</span>
           <span class="title">{p.title}</span>
           <span class="sum" set:html={p.summary}></span>
           <span class="facts">

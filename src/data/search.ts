@@ -15,14 +15,14 @@ const work: Entry[] = items.map((i) => ({
   title: i.title,
   href: i.href,
   group: 'Work',
-  keywords: [i.short, strip(i.summary), i.role, ...i.tags, i.kind].join(' '),
+  keywords: [i.short, strip(i.summary), i.role, ...i.tags, i.kind, i.category, i.sub].join(' '),
   answer: strip(i.summary),
 }));
 
 const pages: Entry[] = [
   { title: 'About me', href: '/about', group: 'Pages', keywords: 'about bio who story strengths clifton hobbies' },
-  { title: 'All projects', href: '/projects', group: 'Pages', keywords: 'projects case studies work portfolio' },
-  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground creative side fun prints posters reels' },
+  { title: 'All projects', href: '/projects', group: 'Pages', keywords: 'projects case studies work portfolio startup client work competition creative content social media design' },
+  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground passion products vibe coding ai apps side projects' },
 ];
 pages.push({ title: 'Resume', href: '/resume', group: 'Pages', keywords: 'resume cv experience pdf' });
 
@@ -57,7 +57,7 @@ const answers: Entry[] = [
   },
   {
     title: 'AI + vibe coding',
-    href: '/projects/lock-in',
+    href: '/playground/lock-in',
     group: 'Quick answers',
     keywords: 'ai vibe coding google ai studio gemini claude code prompt app study exam canvas game lock in',
     answer: 'Lock In turns your classes into 15-minute exam games. I designed it and built it by directing AI: Gemini in AI Studio, then Claude Code.',
