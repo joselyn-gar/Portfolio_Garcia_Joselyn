@@ -25,7 +25,6 @@ const highlights = [
   ['lyft', '720%', 'projected ROI for a feature built on what Lyft already owns'],
   ['releaf', 'Top 16', 'of 131 startups at the Skandalaris Venture Competition'],
   ['skate-for-girls', '45%', 'couldn’t find Donate, so I redesigned the nav around it'],
-  ['lock-in', '0', 'WCAG AA issues in a study app I designed and built by directing AI'],
 ];
 const byslug = (s: string) => items.find((i) => i.slug === s)!;
 ---
@@ -180,7 +179,7 @@ const byslug = (s: string) => items.find((i) => i.slug === s)!;
   /* highlights */
   .hl-sec { width: min(100% - 40px, 1180px); margin: 0 auto; padding-top: 90px; }
   .hl-sec h2 { display: flex; align-items: center; gap: 14px; font-size: clamp(2rem, 3.6vw, 3rem); font-weight: 700; margin-bottom: 36px; }
-  .hl-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+  .hl-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .hl-card { position: relative; display: block; padding: 28px 24px 26px; border-radius: 30px; background: #f4f4f4; color: #111; text-decoration: none; transition: transform 0.3s var(--ease); }
   .hl-card:hover { transform: translateY(-4px); }
   .app.big { width: 64px; height: 64px; border-radius: 18px; margin-bottom: 40px; box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12); }
