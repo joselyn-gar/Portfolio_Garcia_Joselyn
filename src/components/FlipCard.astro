@@ -1,11 +1,11 @@
 ---
 // A card: a bold front, flips on hover/focus/tap to reveal the back.
-interface Props { front: string; kicker?: string; back: string; color?: string; img?: string; fit?: 'cover' | 'contain'; pos?: string; }
-const { front, kicker = 'Hobby', back, color = 'lyft', img, fit = 'cover', pos = 'center' } = Astro.props;
+interface Props { front: string; kicker?: string; back: string; color?: string; img?: string; fit?: 'cover' | 'contain'; pos?: string; pattern?: 'dots' | 'stripes' | 'checks' | 'grid' | 'rings' | 'sunburst'; }
+const { front, kicker = 'Hobby', back, color = 'lyft', img, fit = 'cover', pos = 'center', pattern = 'dots' } = Astro.props;
 ---
 <button class="flip" type="button" style={`--c:var(--${color});--t:var(--${color}-tint);--ct:var(--${color}-text)`} aria-label={img ? `${front}: tap to flip` : `${front}: ${back}`} aria-pressed="false" data-flip data-photo={img ? '' : undefined}>
   <span class="flip-inner" aria-hidden="true">
-    <span class="flip-face front"><span class="k">{kicker}</span><span class="f">{front}</span><span class="q">?</span></span>
+    <span class={`flip-face front p-${pattern}`}><span class="k">{kicker}</span><span class="f">{front}</span></span>
     {img ? <span class:list={["flip-face back photo", { contain: fit === "contain" }]} style={`background-image:url(${img});background-position:${pos}`}></span> : <span class="flip-face back"><span class="k">{front}</span><span class="b">{back}</span></span>}
   </span>
 </button>
@@ -20,7 +20,16 @@ const { front, kicker = 'Hobby', back, color = 'lyft', img, fit = 'cover', pos =
   .back { background: var(--white); transform: rotateY(180deg); }
   .k { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ct); margin-bottom: 6px; }
   .f { font-family: var(--serif); font-weight: 650; letter-spacing: -0.015em; font-size: clamp(1.4rem, 2vw, 1.9rem); line-height: 1.1; overflow-wrap: normal; hyphens: none; }
-  .q { position: absolute; right: 18px; bottom: 6px; font-family: var(--serif); font-size: 3.4rem; color: var(--c); opacity: 0.35; }
+  /* a playful pattern on the right side of each front, fading out behind the text */
+  .front { overflow: hidden; }
+  .front::before { content: ''; position: absolute; inset: 0; opacity: 0.55; -webkit-mask-image: linear-gradient(90deg, transparent 30%, #000 80%); mask-image: linear-gradient(90deg, transparent 30%, #000 80%); }
+  .front > * { position: relative; }
+  .p-dots::before { background: radial-gradient(var(--c) 26%, transparent 28%) 0 0 / 18px 18px; }
+  .p-stripes::before { background: repeating-linear-gradient(-45deg, var(--c) 0 5px, transparent 5px 15px); }
+  .p-checks::before { background: conic-gradient(var(--c) 25%, transparent 0 50%, var(--c) 0 75%, transparent 0) 0 0 / 26px 26px; opacity: 0.4; }
+  .p-grid::before { background: linear-gradient(var(--c) 2px, transparent 2px) 0 0 / 22px 22px, linear-gradient(90deg, var(--c) 2px, transparent 2px) 0 0 / 22px 22px; }
+  .p-rings::before { background: repeating-radial-gradient(circle at 100% 100%, var(--c) 0 4px, transparent 4px 14px); }
+  .p-sunburst::before { background: repeating-conic-gradient(from 0deg at 100% 100%, var(--c) 0 5deg, transparent 5deg 12deg); }
   .b { font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; }
   .back.photo { padding: 0; background-size: cover; background-position: center; background-repeat: no-repeat; background-color: var(--white); }
   .back.photo.contain { background-size: contain; }

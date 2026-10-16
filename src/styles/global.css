@@ -187,3 +187,6 @@ section { scroll-margin-top: 96px; }
 .split p, .split li { color: var(--ink-2); }
 @media (max-width: 760px) { .split, .split.flip { grid-template-columns: 1fr; } }
 
+
+/* sunset gradient for key words, same as "driven" on Home (both ends pass AA on white) */
+.sunset { background: linear-gradient(90deg, #b0125b, #c2410c); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
