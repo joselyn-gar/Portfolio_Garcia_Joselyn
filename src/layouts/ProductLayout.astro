@@ -246,11 +246,11 @@ const next = nextItem(slug);
   .toc a[aria-current='true'] { color: var(--ink); font-weight: 600; border-color: var(--accent-text, #111); }
   .toc-pill { position: fixed; left: 50%; bottom: 18px; z-index: 60; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; padding: 11px 18px; border: 0; border-radius: 999px; background: #111; color: #fff; font: 600 0.9rem var(--sans); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); transition: opacity 0.3s, transform 0.3s var(--ease); max-width: calc(100vw - 40px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .toc-pill.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
-  @media (max-width: 1279px) {
+  @media (max-width: 1439px) {
     .toc { left: 50%; top: auto; bottom: 70px; width: min(320px, calc(100vw - 40px)); transform: translateX(-50%); padding: 16px 18px; border-radius: 20px; background: #fff; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18); opacity: 0 !important; pointer-events: none !important; }
     .toc.open { opacity: 1 !important; pointer-events: auto !important; }
   }
-  @media (min-width: 1280px) { .toc-pill { display: none; } }
+  @media (min-width: 1440px) { .toc-pill { display: none; } }
 </style>
 
 <script>

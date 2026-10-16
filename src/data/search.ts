@@ -22,7 +22,7 @@ const work: Entry[] = items.map((i) => ({
 const pages: Entry[] = [
   { title: 'About me', href: '/about', group: 'Pages', keywords: 'about bio who story strengths clifton hobbies' },
   { title: 'All projects', href: '/projects', group: 'Pages', keywords: 'projects case studies work portfolio' },
-  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground creative side fun textiles posters reels' },
+  { title: 'Playground', href: '/playground', group: 'Pages', keywords: 'playground creative side fun prints posters reels' },
 ];
 pages.push({ title: 'Resume', href: '/resume', group: 'Pages', keywords: 'resume cv experience pdf' });
 
