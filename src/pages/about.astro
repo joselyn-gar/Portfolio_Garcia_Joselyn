@@ -29,7 +29,6 @@ const strengths = [
   ['Individualization', 'I spot where each teammate shines and hand out work to match.'],
   ['Input', 'I dig deep into research, then brief the team in short, usable summaries.'],
 ];
-const patterns = ['dots', 'stripes', 'checks', 'grid', 'rings', 'sunburst'] as const;
 const hobbies = [
   { front: 'Watching baseball', back: '', color: 'write', img: '/images/about/dodgers.webp' },
   { front: 'Video production', back: '', color: 'tex', img: '/images/about/video.webp' },
@@ -68,8 +67,8 @@ const hobbies = [
     <p class="eyebrow">Clifton Strengths</p>
     <h2 id="str-h">How I show up on a team.</h2>
     <p class="hint">Hover or tap a card to flip it.</p>
-    <div class="cards five">
-      {strengths.map(([s, b], i) => <FlipCard kicker={`Strength ${i + 1}`} front={s} back={b} color={['skate', 'write', 'lyft', 'stl', 'tex'][i]} pattern={patterns[i]} />)}
+    <div class="cards five glass">
+      {strengths.map(([s, b], i) => <FlipCard kicker={`Strength ${i + 1}`} front={s} back={b} color={['skate', 'write', 'lyft', 'stl', 'tex'][i]} />)}
     </div>
   </section>
 
@@ -97,8 +96,8 @@ const hobbies = [
     <p class="eyebrow">Off the clock</p>
     <h2 id="away-h">Away from the desk.</h2>
     <p class="hint">Tap a card to flip it.</p>
-    <div class="cards three">
-      {hobbies.map((h, i) => <FlipCard kicker="Hobby" front={h.front} back={h.back} color={h.color} img={h.img} fit={h.fit} pos={h.pos} pattern={patterns[(i + 2) % patterns.length]} />)}
+    <div class="cards three glass">
+      {hobbies.map((h) => <FlipCard kicker="Hobby" front={h.front} back={h.back} color={h.color} img={h.img} fit={h.fit} pos={h.pos} />)}
     </div>
     {site.pinterest && <p><a class="btn ghost" href={site.pinterest} target="_blank" rel="noopener">See my Pinterest boards ↗</a></p>}
     <p class="site-note" id="site">The little dog following your cursor can be switched off in the footer.</p>
@@ -124,7 +123,11 @@ const hobbies = [
   .cards { display: grid; gap: 18px; margin-top: 24px; }
   .cards.five { grid-template-columns: repeat(5, 1fr); }
   .cards.three { grid-template-columns: repeat(3, 1fr); }
-  .cards.five :global(.f) { font-size: 1.12rem; overflow-wrap: anywhere; }
+  /* soft pastel panel so the glass cards have color to frost */
+  .cards.glass { padding: 24px; border-radius: 28px; border: 1px solid rgba(255, 255, 255, 0.8); background: radial-gradient(at 8% 15%, #e6defc 0, transparent 50%), radial-gradient(at 92% 10%, #d6ecfb 0, transparent 50%), radial-gradient(at 30% 100%, #fde3d2 0, transparent 55%), radial-gradient(at 85% 95%, #d9f3e4 0, transparent 50%), #f3f2f8; }
+  .cards.five { gap: 12px; padding: 16px; }
+  .cards.five :global(.flip-face) { padding: 16px; }
+  .cards.five :global(.f) { font-size: 1.05rem; }
   .tool-marquee { margin-top: 24px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
   .tool-track { list-style: none; margin: 0; padding: 12px 0 20px; display: flex; gap: 20px; width: max-content; animation: tools-scroll 38s linear infinite; }
   .tool-marquee:hover .tool-track { animation-play-state: paused; }
@@ -144,6 +147,7 @@ const hobbies = [
     .portrait { max-width: 260px; }
   }
   @media (max-width: 760px) {
+    .cards.glass { padding: 14px; }
     .now { grid-template-columns: 1fr; }
     .cards.five, .cards.three { grid-template-columns: repeat(2, 1fr); }
     .band-sec { padding: 44px 0; }
