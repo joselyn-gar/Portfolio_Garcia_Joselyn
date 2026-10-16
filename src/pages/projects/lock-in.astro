@@ -1,90 +1,156 @@
 ---
 import ProductLayout from '../../layouts/ProductLayout.astro';
-import WhatIDid from '../../components/WhatIDid.astro';
 
-const app = 'https://lock-in-2.ai.studio/';
-const mission = 'https://app.joinhandshake.com/learn/vibe-code-an-app-10c2cab0/mission_step_cmtaoafw0000q2asmcm9sgk3u';
+const live = 'https://lock-in-study-app.vercel.app/';
+const img = (f: string) => `/images/lockin/${f}`;
 ---
 <ProductLayout
   slug="lock-in"
-  eyebrow="Vibe-coding mission · Handshake × Google AI Studio"
+  eyebrow="AI build · Product design"
   title="Lock In"
-  tagline="A study app that turns your Canvas courses into <strong>exam-prep games</strong>, so you never have to re-prompt."
-  hero="/images/lockin/logo-wide.webp"
-  heroAlt="Lock In app icon: a smiling tan star waving under the words Lock In on dark olive"
-  links={[['Try Lock In →', 'https://lock-in-2.ai.studio/']]}
-  overview={[['Context', 'Handshake vibe-coding mission'], ['Deliverable', 'Live web app'], ['Tools', 'Gemini, Google AI Studio'], ['Team', 'Solo']]}
+  tagline="<strong>A study app that turns your classes into 15-minute exam games. I designed it and built it by directing AI.</strong> Not a published app. A working demo."
+  hero={img('desk-06-today.webp')}
+  heroAlt="Lock In Today screen: a gray card that says Let's lock in today with a Start Daily Session button, the star mascot, an Up next list of exams and mastery rings per course"
+  links={[['Live demo →', live]]}
+  overview={[['Role', 'Product idea, UX + UI design, prompt writing, AI direction, review, deployment'], ['Timeline', '2 days'], ['Tools', 'Google AI Studio (Gemini), Claude Code, React, Tailwind, Vercel']]}
 >
-  <WhatIDid heading="From a prompt to a working app." items={[
-    ['Defined the product', 'Turned my own study habit into a brief, using the <strong>AI task canvas</strong>: audience, context, role, output, constraints and task.'],
-    ['Built it in Google AI Studio', `Vibe-coded a <a href="${app}" target="_blank" rel="noopener">working web app ↗</a> through the <a href="${mission}" target="_blank" rel="noopener">Handshake Vibe Code an App mission ↗</a>.`],
-    ['Designed the experience', 'Brand, star mascot, neutral palette and onboarding reveal, plus the <strong>problem map</strong>, <strong>navigation paths</strong> and key screens below.'],
-  ]}>
-    <p class="cta-row"><a class="btn" href={app} target="_blank" rel="noopener">Try Lock In ↗</a></p>
-  </WhatIDid>
-
-  <section class="chapter tinted">
-    <h2>Why this problem</h2>
-    <p class="pull">Every exam, I was <span class="hl">re-prompting Claude</span> to build me a study game. I wanted an app that already knew my classes.</p>
+  <section class="chapter">
+    <h2>The problem</h2>
+    <p class="lead">Exam prep should feel like playing, not studying.</p>
+    <p>Studying for exams meant <strong>re-prompting ChatGPT</strong> over and over. Paste notes. Explain the class. Ask for a quiz. Do it again tomorrow. Why re-prompt every night?</p>
+    <p>I wanted <strong>one stop for exam prep</strong>. Set it up once, then just play.</p>
+    <p>The research backs the format. Gloria Mark found people now stay on one screen for about <strong>47 seconds</strong> before switching (<em>Attention Span</em>, 2023). Long study sessions fight that. Short rounds work with it.</p>
+    <p>Games also make you recall, not reread. Roediger and Karpicke (2006) found that <strong>testing yourself</strong> beats rereading for long-term memory. Dunlosky and colleagues (2013) rated practice testing and spaced practice the two study methods with <strong>high utility</strong>.</p>
+    <p><strong>Who it’s for:</strong> college students, starting with me. They open it for about 15 minutes a day and need to know what to do next within 2 seconds.</p>
+    <p><strong>How it works:</strong> connect Canvas or upload slides and past exams. Lock In forecasts the topics most likely to be on your exam. It turns them into short games, inspired by Duolingo and Quizlet, aimed at what you haven’t mastered.</p>
+    <div class="learn"><b>What I learned</b><p>The best feature removes the step you repeat most.</p></div>
   </section>
 
   <section class="chapter">
-    <h2>Problem map</h2>
-    <p class="lead">Name the friction first.</p>
-    <p>I grouped what slowed me down when studying with AI. Each group became a feature.</p>
-    <figure class="band"><img src="/images/lockin/screen-problem-map.webp" alt="Problem map with four groups: re-prompting, inputs, relevance and motivation, each with sticky notes and a design answer" loading="lazy" /></figure>
-    <div class="learn"><b>What I learned</b><p>The best feature removes the step people repeat most.</p></div>
+    <h2>Version one</h2>
+    <p class="lead">It worked. It didn’t feel like mine.</p>
+    <p>Day 1, I vibe coded the first version in <strong>Google AI Studio</strong> with Gemini. The features worked. The interface felt generic and AI-made: an olive and lime theme, emoji everywhere, and a top bar with <strong>12 controls</strong> competing for attention.</p>
+    <p>It was fine, but it didn’t meet my expectations. On day 2 I moved to <strong>Claude Code</strong>, because I understood the process better there.</p>
+    <div class="band cols">
+      <figure><img src={img('before-02-dashboard.webp')} alt="Version one dashboard in olive and lime, with emoji icons and a crowded top bar of controls" loading="lazy" /><figcaption>Before: the AI Studio dashboard.</figcaption></figure>
+      <figure><img src={img('before-03-game.webp')} alt="Version one game screen in olive and lime with emoji and stacked answer buttons" loading="lazy" /><figcaption>Before: the AI Studio game.</figcaption></figure>
+    </div>
+    <div class="learn"><b>What I learned</b><p>AI can build features. It can’t build taste.</p></div>
   </section>
 
-  <section class="chapter tinted">
-    <h2>The big decision</h2>
-    <p class="lead">App, not a Claude skill.</p>
-    <div class="band mycall">
-      <h3>The question I asked myself</h3>
-      <p class="pull">Couldn’t I just make a Claude skill?</p>
-      <p class="pull answer">I could, but I’d still type in every exam by hand. Syncing <span class="hl">Canvas</span> lets the app pull my assignments for me.</p>
+  <section class="chapter">
+    <h2>Design</h2>
+    <p class="lead">I designed it myself first.</p>
+    <p>I started from what I like to use. A character-led fitness app, <strong>Marshmallow</strong>’s friendly insurance screens and <strong>Duolingo</strong>.</p>
+    <figure class="band"><img src={img('inspiration.webp')} alt="Inspiration board: a fitness app led by a star character, soft Marshmallow insurance screens, and Duolingo lessons" loading="lazy" /><figcaption>Inspiration I fed in.</figcaption></figure>
+    <p>Then I made mockups for <strong>5 screens</strong>: Connect, Today, Forecast, Game and Results. Plus a navigation map. The rule: <strong>every path ends back on Today</strong>, so there’s always one clear next step.</p>
+    <figure class="band"><img src={img('nav-map.webp')} alt="Navigation map: set up once (welcome, pick a source, confirm exams, semester scope), a daily loop (Today, start session, game, results) and a before-exam path (forecast, play top 3 topics), all returning to Today" loading="lazy" /></figure>
+    <div class="band cols">
+      <figure><img src={img('mockup-today.webp')} alt="My Today mockup: a black and white dashboard with one Start Daily Session button and the tan star mascot" loading="lazy" /><figcaption>Mockup: Today.</figcaption></figure>
+      <figure><img src={img('mockup-game.webp')} alt="My game mockup: a question card next to the star mascot with four numbered answers in a grid" loading="lazy" /><figcaption>Mockup: Game.</figcaption></figure>
     </div>
+    <div class="learn"><b>What I learned</b><p>One clear next step beats ten options.</p></div>
   </section>
 
   <section class="chapter">
     <h2>The prompt</h2>
-    <p class="lead">A prompt is a design brief.</p>
-    <p>I used what I learned about the <strong>AI task canvas</strong> to plan the whole build before writing a prompt.</p>
-    <figure class="band"><img src="/images/lockin/screen-canvas.webp" alt="AI task canvas with six cards: audience, context, role, output, constraints and task, filled in for Lock In" loading="lazy" /></figure>
-  </section>
-
-  <section class="chapter tinted">
-    <h2>Navigation paths</h2>
-    <p class="lead">Always one clear next step.</p>
-    <p>Set up once, then a <strong>daily loop</strong>. Before an exam, the <strong>forecast</strong> jumps straight into a game.</p>
-    <figure class="band"><img src="/images/lockin/screen-nav-paths.webp" alt="Flow diagram: set up once (welcome, pick a source, confirm exams, semester scope), a daily loop (today, start session, game, results) and a before-exam path (forecast, play top 3 topics)" loading="lazy" /></figure>
+    <p class="lead">I wrote the brief, not the code.</p>
+    <p>I wrote a structured redesign prompt: <strong>role, context, audience, task, design spec, constraints</strong>. I directed the AI with a spec, not vibes. These lines did the most work:</p>
+    <ul class="brief">
+      <li>Keep every existing feature and all of the data logic.</li>
+      <li>Every screen has exactly one primary action.</li>
+      <li>Meet WCAG AA contrast.</li>
+      <li>Works at 390px and 1280px with no sideways scrolling.</li>
+      <li>Pause for my review after each step.</li>
+    </ul>
+    <div class="learn"><b>What I learned</b><p>I didn’t write code. I wrote the rules it had to follow.</p></div>
   </section>
 
   <section class="chapter">
-    <h2>The screens</h2>
-    <p class="lead">Calm colors, game energy.</p>
-    <p>Inspired by <strong>Duolingo</strong> and <strong>Quizlet</strong>, with a <strong>neutral palette</strong> so studying feels calm, not loud.</p>
-    <figure class="band"><img src="/images/lockin/intro-screens.webp" alt="Three phone screens of the Lock In intro: zoomed in on the star, zooming out to the logo, and the reveal with Start Daily Session" loading="lazy" /><figcaption>The <strong>intro reveal</strong>: zoom in, zoom out, then Let’s lock in today.</figcaption></figure>
-    <figure class="band"><img src="/images/lockin/screen-connect.webp" alt="Setup screen asking where to study from, with Sync with Canvas selected and Upload files as an option" loading="lazy" /><figcaption><strong>Set up once:</strong> sync Canvas, or upload files for any class.</figcaption></figure>
-    <figure class="band"><img src="/images/lockin/screen-dashboard.webp" alt="Dashboard: Let's lock in today with a daily session button, upcoming exams with countdowns, and mastery rings per course" loading="lazy" /><figcaption><strong>Today:</strong> next exam, one button to start, mastery per course.</figcaption></figure>
-    <figure class="band"><img src="/images/lockin/screen-forecast.webp" alt="Exam forecast listing likely topics with likelihood bars, professor-specific guidance, and the sources it was built from" loading="lazy" /><figcaption><strong>Forecast:</strong> likely topics, with <strong>professor-specific guidance</strong>.</figcaption></figure>
+    <h2>The rebuild</h2>
+    <p class="lead">Claude Code rebuilt it on my design.</p>
+    <p>It read the code first and <strong>mapped every old screen</strong> to my mockups. Then it rebuilt the UI on <strong>design tokens</strong>, fixed bugs, made it installable on a phone and deployed it.</p>
     <div class="band cols">
-      <figure><img src="/images/lockin/screen-game.webp" alt="Game question applying a multi-attribute model, with four answers and feedback" loading="lazy" /><figcaption><strong>Game:</strong> questions tuned to what I don’t know yet.</figcaption></figure>
-      <figure><img src="/images/lockin/screen-results.webp" alt="Results screen showing exam readiness rising from 72 to 79 percent and mastery by topic" loading="lazy" /><figcaption><strong>Results:</strong> readiness, streak and what to review.</figcaption></figure>
+      <figure><img src={img('before-02-dashboard.webp')} alt="Before: the olive and lime AI Studio dashboard" loading="lazy" /><figcaption>Before</figcaption></figure>
+      <figure><img src={img('desk-06-today.webp')} alt="After: the white Today screen with one black Start Daily Session button and the tan star" loading="lazy" /><figcaption>After</figcaption></figure>
     </div>
-    <p class="note">Screens above are concept designs I made to show the full flow. Try the live app for the real thing.</p>
+    <div class="band cols">
+      <figure><img src={img('before-03-game.webp')} alt="Before: the AI Studio game with emoji and stacked answers" loading="lazy" /><figcaption>Before</figcaption></figure>
+      <figure><img src={img('desk-08-game.webp')} alt="After: a focused game screen with a progress bar, hearts, the star and four numbered answer cards" loading="lazy" /><figcaption>After</figcaption></figure>
+    </div>
+    <div class="band bigstats four after-stats">
+      <div><b>8,700</b><span>lines in the original export, about</span></div>
+      <div><b>400 → 20</b><span>hardcoded colors to design tokens</span></div>
+      <div><b>12 → 6</b><span>top-bar controls to nav items</span></div>
+      <div><b>9</b><span>screens redesigned</span></div>
+    </div>
+    <p><strong>The design system:</strong> black, white and gray, Inter type, 16px card corners and pill buttons. One accent: black. The <strong>star mascot</strong> in tan is the only color in the app.</p>
+    <div class="band cols">
+      <figure><img src={img('desk-02-source.webp')} alt="Setup screen asking Where should I study from, with Sync with Canvas selected and Upload files as the other option" loading="lazy" /><figcaption>Setup: pick a source.</figcaption></figure>
+      <figure><img src={img('desk-07-forecast.webp')} alt="Forecast screen listing likely exam topics with likelihood bars, a professor guidance card and the sources it was built from" loading="lazy" /><figcaption>Forecast: what’s likely on the exam.</figcaption></figure>
+      <figure><img src={img('desk-09-feedback.webp')} alt="Game feedback bar along the bottom with an explanation of the answer and a Continue button" loading="lazy" /><figcaption>Feedback after each answer.</figcaption></figure>
+      <figure><img src={img('desk-10-results.webp')} alt="Results screen with the star, exam readiness rising from 78 to 80 percent, and mastery by topic" loading="lazy" /><figcaption>Results: readiness 78% → 80%.</figcaption></figure>
+    </div>
+    <div class="learn"><b>What I learned</b><p>Tokens turn 400 decisions into 20.</p></div>
   </section>
 
   <section class="chapter">
-    <h2>What I learned</h2>
-    <ol class="band takeaways-big" style="max-width:var(--text)">
-      <li>A clear prompt is a clear design brief.</li>
-      <li>Solve the step people repeat most.</li>
-      <li>Start with one real user, then widen.</li>
-    </ol>
+    <h2>Proof</h2>
+    <p class="lead">My constraints became the test plan.</p>
+    <p>Every requirement in my prompt became a check: screenshots at <strong>phone and laptop widths</strong>, an <strong>automated accessibility audit</strong> and a production build test.</p>
+    <div class="band bigstats">
+      <div><b>7</b><span>bugs found and fixed</span></div>
+      <div><b>0</b><span>WCAG AA issues across every screen and modal</span></div>
+      <div><b>$0</b><span>hosting, on the Vercel and Gemini free tiers</span></div>
+    </div>
+    <h3>The 7 bugs</h3>
+    <ul class="list">
+      <li>npm install failed</li>
+      <li>Mastery didn’t save on reload</li>
+      <li>Custom and uploaded classes couldn’t start a game</li>
+      <li>The streak never passed 1 day</li>
+      <li>XP history piled every day into one entry</li>
+      <li>The settings modal saved stale data</li>
+      <li>The Vercel build failed on TypeScript 7</li>
+    </ul>
+    <div class="learn"><b>What I learned</b><p>If I can’t check it, I didn’t really ask for it.</p></div>
+  </section>
+
+  <section class="chapter">
+    <h2>Try it</h2>
+    <p class="lead">A live demo you can play with.</p>
+    <p>It’s <strong>not a published product</strong>. It’s not in an app store, it runs on free tiers, and your data stays in your browser. Tap <strong>Try it with sample classes</strong> to see everything right away.</p>
+    <div class="band phones">
+      <figure><img src={img('phone-06-today.webp')} alt="Lock In Today screen on a phone, with the daily session button and Up next exams stacked" loading="lazy" /></figure>
+      <figure><img src={img('phone-08-game.webp')} alt="Lock In game on a phone, with the question card and four answer cards stacked" loading="lazy" /></figure>
+    </div>
+    <div class="install">
+      <img src={img('app-icon.webp')} alt="Lock In app icon: the smiling tan star on white" width="72" height="72" loading="lazy" />
+      <p><strong>Install it:</strong> open the demo on your phone, tap Share, then <strong>Add to Home Screen</strong>.</p>
+    </div>
+    <h3>What’s next</h3>
+    <ul class="list">
+      <li>PDF uploads only send the file name to the AI right now. Reading the text inside them is next.</li>
+      <li>Canvas connects and pulls your course list, but doesn’t create classes yet. Automatic sync is next.</li>
+    </ul>
+    <div class="learn"><b>What I learned</b><p>Ship the demo, then say honestly what’s missing.</p></div>
+    <p class="ctas"><a class="btn" href={live} target="_blank" rel="noopener">Try the live demo →</a></p>
   </section>
 </ProductLayout>
 
 <style>
-  .cta-row { margin-top: 36px !important; }
+  .chapter h3 { margin: 32px 0 8px; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .brief { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 8px; max-width: var(--text); }
+  .brief li { padding: 12px 16px; border-left: 3px solid var(--ink); background: var(--white); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.92rem; line-height: 1.5; color: var(--ink); }
+  .list { padding-left: 1.2em; margin: 8px 0 0; color: var(--ink-2); font-size: 1.05rem; line-height: 1.6; max-width: var(--text); }
+  .list li { margin-bottom: 4px; }
+  .after-stats { margin-block: 28px; }
+  .after-stats b { font-size: clamp(2.4rem, 4.6vw, 3.6rem); white-space: nowrap; }
+  .cols figure img { border: 1px solid var(--line); }
+  .phones { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: 20px; }
+  .phones img { border: 1px solid var(--line); }
+  .install { display: flex; align-items: center; gap: 16px; margin-top: 24px; max-width: var(--text); }
+  .install img { width: 72px; height: 72px; border-radius: 18px; border: 1px solid var(--line); flex: none; }
+  .install p { margin: 0; }
+  .ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px !important; }
 </style>

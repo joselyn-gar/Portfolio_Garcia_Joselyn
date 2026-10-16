@@ -59,8 +59,8 @@ const answers: Entry[] = [
     title: 'AI + vibe coding',
     href: '/projects/lock-in',
     group: 'Quick answers',
-    keywords: 'ai vibe coding google ai studio prompt app study canvas gamification handshake lock in',
-    answer: 'Lock In is a study app I vibe-coded in Google AI Studio. It turns Canvas courses into exam-prep games.',
+    keywords: 'ai vibe coding google ai studio gemini claude code prompt app study exam canvas game lock in',
+    answer: 'Lock In turns your classes into 15-minute exam games. I designed it and built it by directing AI: Gemini in AI Studio, then Claude Code.',
   },
   {
     title: 'What are you studying?',

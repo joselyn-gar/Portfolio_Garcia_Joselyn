@@ -75,49 +75,81 @@
   1280,
   777
  ],
- "/images/lockin/icon.webp": [
+ "/images/lockin/app-icon.webp": [
   512,
   512
  ],
- "/images/lockin/intro-screens.webp": [
-  1024,
-  572
+ "/images/lockin/before-01-launch.webp": [
+  1280,
+  800
  ],
- "/images/lockin/logo-wide.webp": [
+ "/images/lockin/before-02-dashboard.webp": [
+  1280,
+  800
+ ],
+ "/images/lockin/before-03-game.webp": [
+  1280,
+  800
+ ],
+ "/images/lockin/desk-01-welcome.webp": [
+  1280,
+  800
+ ],
+ "/images/lockin/desk-02-source.webp": [
+  1280,
+  800
+ ],
+ "/images/lockin/desk-04-exams.webp": [
+  1280,
+  1807
+ ],
+ "/images/lockin/desk-06-today.webp": [
+  1280,
+  800
+ ],
+ "/images/lockin/desk-07-forecast.webp": [
+  1280,
+  800
+ ],
+ "/images/lockin/desk-07-mastery.webp": [
+  1280,
+  1579
+ ],
+ "/images/lockin/desk-08-game.webp": [
+  1280,
+  800
+ ],
+ "/images/lockin/desk-09-feedback.webp": [
+  1280,
+  800
+ ],
+ "/images/lockin/desk-10-results.webp": [
+  1280,
+  800
+ ],
+ "/images/lockin/inspiration.webp": [
   1600,
-  893
+  440
  ],
- "/images/lockin/screen-canvas.webp": [
-  1600,
-  658
- ],
- "/images/lockin/screen-connect.webp": [
+ "/images/lockin/mockup-game.webp": [
   1600,
   1000
  ],
- "/images/lockin/screen-dashboard.webp": [
+ "/images/lockin/mockup-today.webp": [
   1600,
   1000
  ],
- "/images/lockin/screen-forecast.webp": [
-  1600,
-  1000
- ],
- "/images/lockin/screen-game.webp": [
-  1600,
-  1000
- ],
- "/images/lockin/screen-nav-paths.webp": [
+ "/images/lockin/nav-map.webp": [
   1600,
   910
  ],
- "/images/lockin/screen-problem-map.webp": [
-  1600,
-  730
+ "/images/lockin/phone-06-today.webp": [
+  390,
+  1276
  ],
- "/images/lockin/screen-results.webp": [
-  1600,
-  1000
+ "/images/lockin/phone-08-game.webp": [
+  390,
+  948
  ],
  "/images/lyft/billboard.webp": [
   1600,

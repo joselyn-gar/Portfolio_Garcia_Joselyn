@@ -15,7 +15,7 @@ const filters = ['All', 'UX', 'Marketing', 'Brand', 'AI', 'Design'];
 // small "app icon" crops of each project's own artwork
 const icon: Record<string, [string, string]> = {
   lyft: ['/images/lyft/hero.webp', '62% 40%'], releaf: ['/images/releaf/cover.webp', '8% 50%'],
-  'skate-for-girls': ['/images/skate/cover.webp', '22% 45%'], 'lock-in': ['/images/lockin/icon.webp', 'center'],
+  'skate-for-girls': ['/images/skate/cover.webp', '22% 45%'], 'lock-in': ['/images/lockin/app-icon.webp', 'center'],
   'circular-stl': ['/images/stl/logo.webp', 'center'], 'design-social': ['/images/design/tinydesk-blue.webp', 'center'],
   textiles: ['/images/textiles/gallery/shibori-kaleidoscope.webp', 'center'],
   motifme: ['/images/playground/motifme/icon.webp', 'center'],
@@ -26,7 +26,7 @@ const highlights = [
   ['lyft', '720%', 'projected ROI for a feature built on what Lyft already owns'],
   ['releaf', 'Top 16', 'of 131 startups at the Skandalaris Venture Competition'],
   ['skate-for-girls', '45%', 'couldn’t find Donate, so I redesigned the nav around it'],
-  ['lock-in', 'Live', 'a working study app I vibe-coded in Google AI Studio'],
+  ['lock-in', '0', 'WCAG AA issues in a study app I designed and built by directing AI'],
 ];
 const byslug = (s: string) => items.find((i) => i.slug === s)!;
 ---
@@ -119,7 +119,7 @@ const byslug = (s: string) => items.find((i) => i.slug === s)!;
     <div class="side-grid">
       <a class="side" href="/projects"><b>Case studies</b><span class="stack"><img src="/images/lyft/hero.webp" alt="" loading="lazy" /><img src="/images/skate/cover.webp" alt="" loading="lazy" /><img src="/images/stl/cover.webp" alt="" loading="lazy" /></span></a>
       <a class="side" href="/playground"><b>Playground</b><span class="pic"><img src="/images/design/playground.webp" alt="" loading="lazy" /></span></a>
-      <a class="side" href="/projects/lock-in"><b>AI + vibe coding</b><span class="pic contain"><img src="/images/lockin/icon.webp" alt="" loading="lazy" /></span></a>
+      <a class="side" href="/projects/lock-in"><b>AI + vibe coding</b><span class="pic contain"><img src="/images/lockin/app-icon.webp" alt="" loading="lazy" /></span></a>
       <a class="side" href="/about"><b>About me</b><span class="pic round"><img src="/images/about/portrait.webp" alt="" loading="lazy" /></span></a>
       <a class="side" href="/playground/design-social"><b>Social + content</b><span class="pic"><img src="/images/design/hero-reels.webp" alt="" loading="lazy" /></span></a>
       <a class="side" href={site.resume || '/resume'} target="_blank" rel="noopener"><b>Resume</b><span class="doc" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></a>
