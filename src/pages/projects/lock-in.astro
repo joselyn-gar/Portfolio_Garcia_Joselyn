@@ -12,12 +12,8 @@ const mission = 'https://app.joinhandshake.com/learn/vibe-code-an-app-10c2cab0/m
   tagline="A study app that turns your Canvas courses into <strong>exam-prep games</strong>, so you never have to re-prompt."
   hero="/images/lockin/logo-wide.webp"
   heroAlt="Lock In app icon: a smiling tan star waving under the words Lock In on dark olive"
+  links={[['Try Lock In →', 'https://lock-in-2.ai.studio/']]}
   overview={[['Context', 'Handshake vibe-coding mission'], ['Deliverable', 'Live web app'], ['Tools', 'Gemini, Google AI Studio'], ['Team', 'Solo']]}
-  summary={[
-    ['What I did', 'Wrote the <strong>prompt</strong>, built the <strong>working app</strong>, and designed the <strong>brand and screens</strong>.'],
-    ['The problem', 'I kept <strong>re-prompting</strong> AI to make study games for every exam.'],
-    ['The result', 'A <strong>live app</strong> that forecasts exam questions and tailors games to my <strong>mastery</strong>.'],
-  ]}
 >
   <WhatIDid heading="From a prompt to a working app." items={[
     ['Defined the product', 'Turned my own study habit into a brief, using the <strong>AI task canvas</strong>: audience, context, role, output, constraints and task.'],
@@ -28,45 +24,45 @@ const mission = 'https://app.joinhandshake.com/learn/vibe-code-an-app-10c2cab0/m
   </WhatIDid>
 
   <section class="chapter tinted">
-    <span class="num">Why this problem</span>
+    <h2>Why this problem</h2>
     <p class="pull">Every exam, I was <span class="hl">re-prompting Claude</span> to build me a study game. I wanted an app that already knew my classes.</p>
   </section>
 
   <section class="chapter">
-    <span class="num">01 · Problem map</span>
-    <h2>Name the friction first.</h2>
+    <h2>Problem map</h2>
+    <p class="lead">Name the friction first.</p>
     <p>I grouped what slowed me down when studying with AI. Each group became a feature.</p>
     <figure class="band"><img src="/images/lockin/screen-problem-map.webp" alt="Problem map with four groups: re-prompting, inputs, relevance and motivation, each with sticky notes and a design answer" loading="lazy" /></figure>
     <div class="learn"><b>What I learned</b><p>The best feature removes the step people repeat most.</p></div>
   </section>
 
   <section class="chapter tinted">
-    <span class="num">02 · The big decision</span>
-    <h2>App, not a Claude skill.</h2>
+    <h2>The big decision</h2>
+    <p class="lead">App, not a Claude skill.</p>
     <div class="band mycall">
-      <span class="num">The question I asked myself</span>
+      <h3>The question I asked myself</h3>
       <p class="pull">Couldn’t I just make a Claude skill?</p>
       <p class="pull answer">I could, but I’d still type in every exam by hand. Syncing <span class="hl">Canvas</span> lets the app pull my assignments for me.</p>
     </div>
   </section>
 
   <section class="chapter">
-    <span class="num">03 · The prompt</span>
-    <h2>A prompt is a design brief.</h2>
+    <h2>The prompt</h2>
+    <p class="lead">A prompt is a design brief.</p>
     <p>I used what I learned about the <strong>AI task canvas</strong> to plan the whole build before writing a prompt.</p>
     <figure class="band"><img src="/images/lockin/screen-canvas.webp" alt="AI task canvas with six cards: audience, context, role, output, constraints and task, filled in for Lock In" loading="lazy" /></figure>
   </section>
 
   <section class="chapter tinted">
-    <span class="num">04 · Navigation paths</span>
-    <h2>Always one clear next step.</h2>
+    <h2>Navigation paths</h2>
+    <p class="lead">Always one clear next step.</p>
     <p>Set up once, then a <strong>daily loop</strong>. Before an exam, the <strong>forecast</strong> jumps straight into a game.</p>
     <figure class="band"><img src="/images/lockin/screen-nav-paths.webp" alt="Flow diagram: set up once (welcome, pick a source, confirm exams, semester scope), a daily loop (today, start session, game, results) and a before-exam path (forecast, play top 3 topics)" loading="lazy" /></figure>
   </section>
 
   <section class="chapter">
-    <span class="num">05 · The screens</span>
-    <h2>Calm colors, game energy.</h2>
+    <h2>The screens</h2>
+    <p class="lead">Calm colors, game energy.</p>
     <p>Inspired by <strong>Duolingo</strong> and <strong>Quizlet</strong>, with a <strong>neutral palette</strong> so studying feels calm, not loud.</p>
     <figure class="band"><img src="/images/lockin/intro-screens.webp" alt="Three phone screens of the Lock In intro: zoomed in on the star, zooming out to the logo, and the reveal with Start Daily Session" loading="lazy" /><figcaption>The <strong>intro reveal</strong>: zoom in, zoom out, then Let’s lock in today.</figcaption></figure>
     <figure class="band"><img src="/images/lockin/screen-connect.webp" alt="Setup screen asking where to study from, with Sync with Canvas selected and Upload files as an option" loading="lazy" /><figcaption><strong>Set up once:</strong> sync Canvas, or upload files for any class.</figcaption></figure>
@@ -80,8 +76,7 @@ const mission = 'https://app.joinhandshake.com/learn/vibe-code-an-app-10c2cab0/m
   </section>
 
   <section class="chapter">
-    <span class="num">Takeaways</span>
-    <h2>What I’m taking with me.</h2>
+    <h2>What I learned</h2>
     <ol class="band takeaways-big" style="max-width:var(--text)">
       <li>A clear prompt is a clear design brief.</li>
       <li>Solve the step people repeat most.</li>

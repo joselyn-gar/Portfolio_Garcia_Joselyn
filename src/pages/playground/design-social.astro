@@ -30,15 +30,10 @@ const wutvPosts = [
   tagline="<strong>4+ years</strong> of content. I run social for the <strong>Skandalaris Center</strong> and <strong>WUTV</strong>."
   hero="/images/design/hero-reels.webp"
   heroAlt="Three social reels side by side for the Skandalaris Center, WUTV, and West High ASB"
-  summary={[
-    ['Reach', '<strong>1,000+</strong> average views per Skandalaris post.'],
-    ['Growth', 'A WUTV brand refresh grew membership <strong>3 → 20</strong>.'],
-    ['Since', 'Editing video since <strong>2020</strong>.'],
-  ]}
 >
   <section class="chapter">
-    <span class="num">01 · Posters</span>
-    <h2>Made to get sign-ups.</h2>
+    <h2>Posters</h2>
+    <p class="lead">Made to get sign-ups.</p>
     <div class="band posters">
       {posters.map(([src, alt, cap]) => (
         <figure><img src={src} alt={alt} loading="lazy" /><figcaption set:html={cap}></figcaption></figure>
@@ -47,21 +42,21 @@ const wutvPosts = [
   </section>
 
   <section class="chapter tinted">
-    <span class="num">02 · Banners</span>
-    <h2>WUTV, on every screen.</h2>
+    <h2>Banners</h2>
+    <p class="lead">WUTV, on every screen.</p>
     <figure class="band"><img src="/images/design/wutv-banner.webp" alt="WUTV banner: a retro TV with the WUTV logo, We do things, and general body meetings Wednesdays 5:30 PM and Fridays 5:00 PM" loading="lazy" /></figure>
   </section>
 
   <section class="chapter">
-    <span class="num">03 · On Instagram</span>
-    <h2>Live on the WUTV feed.</h2>
+    <h2>On Instagram</h2>
+    <p class="lead">Live on the WUTV feed.</p>
     <p>I run the <strong>WUTV</strong> account. Here’s what’s posted right now.</p>
     <div class="band"><InstagramEmbed posts={wutvPosts} handle="wutv_22" /></div>
   </section>
 
   <section class="chapter tinted">
-    <span class="num">04 · Reels</span>
-    <h2>Pacing is everything.</h2>
+    <h2>Reels</h2>
+    <p class="lead">Pacing is everything.</p>
     <p>Film edits for fun in 2020 became <strong>recaps and reels</strong> built on pacing and emotion.</p>
     <div class="band reels">
       <Video name="skandalaris-welcome" frame="phone" label="Animated welcome post: Welcome! Your journey starts here" caption="Skandalaris · Welcome post" />
@@ -71,8 +66,8 @@ const wutvPosts = [
   </section>
 
   <section class="chapter">
-    <span class="num">Where it started</span>
-    <h2>High school ASB.</h2>
+    <h2>Where it started</h2>
+    <p class="lead">High school ASB.</p>
     <p><strong>Spirit week graphics</strong>, flyers, and recaps for <strong>West High ASB</strong>, where I first learned to tell a story in 15 seconds.</p>
     <div class="band asb">
       {asb.map(([src, alt, cap]) => (

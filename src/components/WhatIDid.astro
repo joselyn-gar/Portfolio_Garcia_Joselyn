@@ -4,8 +4,8 @@ interface Props { items: [string, string][]; heading?: string; }
 const { items, heading = 'What I did' } = Astro.props;
 ---
 <section class="chapter">
-  <span class="num">What I did</span>
-  <h2>{heading}</h2>
+  <h2>What I did</h2>
+  <p class="lead">{heading}</p>
   <ol class="band did">
     {items.map(([title, body]) => <li><b>{title}</b><span set:html={body}></span></li>)}
   </ol>
