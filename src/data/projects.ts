@@ -1,4 +1,4 @@
-// Single source for the board tiles, deed cards, dice roll, and search.
+// Single source for project cards, case study pages and search.
 export type Item = {
   slug: string;
   href: string;
@@ -6,12 +6,12 @@ export type Item = {
   short: string; // tile label
   kind: 'Case study' | 'Playground';
   color: string; // CSS var prefix, e.g. 'lyft' -> --lyft, --lyft-tint, --lyft-text
-  face: 1 | 2 | 3 | 4 | 5 | 6; // die face shown when the dice cursor hovers the tile
+  face: 1 | 2 | 3 | 4 | 5 | 6; // legacy ordering id
   summary: string; // may contain <strong> for key words
   role: string;
   tags: string[];
   cover: string;
-  stats: [string, string][]; // "rent" rows on the deed card
+  stats: [string, string][]; // headline numbers
 };
 
 export const items: Item[] = [

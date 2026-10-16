@@ -34,7 +34,7 @@ const hobbies = [
   { front: 'Video production', back: '', color: 'tex', img: '/images/about/video.webp' },
   { front: 'Jazz', back: '', color: 'lyft', img: '/images/about/jazz.webp' },
   { front: 'Agriculture operations', back: '', color: 'jdel', img: '/images/about/agriculture.webp', pos: 'center 22%' },
-  { front: 'Board games', back: 'Hence the dice.', color: 'stl' },
+  { front: 'Board games', back: 'A favorite way to unwind with friends.', color: 'stl' },
   { front: 'Vibe coding', back: '', color: 'skate', img: '/images/about/vibe-coding.webp', fit: 'contain' },
 ];
 ---
@@ -89,14 +89,14 @@ const hobbies = [
   </section>
 
   <section class="band-sec" id="away" aria-labelledby="away-h">
-    <p class="eyebrow">Chance cards</p>
+    <p class="eyebrow">Off the clock</p>
     <h2 id="away-h">Away from the desk.</h2>
     <p class="hint">Tap a card to flip it.</p>
     <div class="cards three">
-      {hobbies.map((h) => <FlipCard kicker="Chance" front={h.front} back={h.back} color={h.color} img={h.img} fit={h.fit} pos={h.pos} />)}
+      {hobbies.map((h) => <FlipCard kicker="Hobby" front={h.front} back={h.back} color={h.color} img={h.img} fit={h.fit} pos={h.pos} />)}
     </div>
     {site.pinterest && <p><a class="btn ghost" href={site.pinterest} target="_blank" rel="noopener">See my Pinterest boards ↗</a></p>}
-    <p class="site-note" id="site">This site is <strong>built like a board game</strong>, because I love them. The dog cursor can be switched off in the footer.</p>
+    <p class="site-note" id="site">The little dog following your cursor can be switched off in the footer.</p>
     <div class="cta">
       <a class="btn" href={`mailto:${site.email}`}>Email me</a>
       <a class="btn ghost" href={site.resume || "/resume"} target="_blank" rel="noopener">Resume ↗</a>

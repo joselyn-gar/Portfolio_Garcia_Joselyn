@@ -1,7 +1,7 @@
 ---
-// A "Chance"-style card: a bold front, flips on hover/focus/tap to reveal the back.
+// A card: a bold front, flips on hover/focus/tap to reveal the back.
 interface Props { front: string; kicker?: string; back: string; color?: string; img?: string; fit?: 'cover' | 'contain'; pos?: string; }
-const { front, kicker = 'Chance', back, color = 'lyft', img, fit = 'cover', pos = 'center' } = Astro.props;
+const { front, kicker = 'Hobby', back, color = 'lyft', img, fit = 'cover', pos = 'center' } = Astro.props;
 ---
 <button class="flip" type="button" style={`--c:var(--${color});--t:var(--${color}-tint);--ct:var(--${color}-text)`} aria-label={img ? `${front}: tap to flip` : `${front}: ${back}`} aria-pressed="false" data-flip data-photo={img ? '' : undefined}>
   <span class="flip-inner" aria-hidden="true">

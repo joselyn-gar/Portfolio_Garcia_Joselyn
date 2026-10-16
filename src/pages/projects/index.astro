@@ -1,25 +1,48 @@
 ---
 import Base from '../../layouts/Base.astro';
-import DeedCard from '../../components/DeedCard.astro';
 import { caseStudies, playground } from '../../data/projects';
+const cover: Record<string, string> = { 'design-social': '/images/design/playground.webp', textiles: '/images/textiles/cover.webp' };
+const groups = [
+  { id: 'cases', title: 'Case studies', list: caseStudies },
+  { id: 'play', title: 'Playground', list: playground },
+];
 ---
-<Base title="Projects" active="projects" description="Case studies by Joselyn Garcia: Lyft Explore, ReLeaf Candles, SKATE for Girls, and Circular STL.">
+<Base title="Projects" active="projects" description="Case studies by Joselyn Garcia across UX, brand, product, marketing and AI.">
   <section class="wrap page-head">
     <p class="eyebrow">Projects</p>
-    <h1>Every property on the board.</h1>
-    <p class="lede">Four case studies across UX, brand, product, and marketing. Each card shows the headline numbers. Open one for the full story.</p>
+    <h1>All projects.</h1>
+    <p class="lede">{caseStudies.length} case studies across UX, brand, product, marketing and AI, plus creative work from the playground.</p>
   </section>
-  <section class="wrap" aria-label="Case studies">
-    <div class="deeds">{caseStudies.map((item) => <DeedCard item={item} />)}</div>
-  </section>
-  <section class="wrap more" aria-labelledby="more-h">
-    <h2 id="more-h">More from the playground</h2>
-    <div class="deeds">{playground.map((item) => <DeedCard item={item} />)}</div>
-  </section>
+  {groups.map((g) => (
+    <section class="wrap group" aria-labelledby={`${g.id}-h`}>
+      <h2 id={`${g.id}-h`}>{g.title}</h2>
+      <div class="grid">
+        {g.list.map((p) => (
+          <a class="card" href={p.href}>
+            <span class="frame"><img src={cover[p.slug] || p.cover} alt="" loading="lazy" /></span>
+            <span class="tags">{p.tags.slice(0, 2).join(' · ')}</span>
+            <b>{p.title}</b>
+            <span class="sum" set:html={p.summary}></span>
+          </a>
+        ))}
+      </div>
+    </section>
+  ))}
 </Base>
 
 <style>
-  .page-head { padding: 130px 0 40px; max-width: 760px; margin-left: max(20px, calc((100% - var(--wrap)) / 2)); }
-  .deeds { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
-  .more { padding-top: 90px; }
+  .page-head { padding: 130px 0 10px; }
+  .page-head h1 { font-size: clamp(2.6rem, 6vw, 4.4rem); letter-spacing: -0.045em; }
+  .group { padding-top: 56px; }
+  .group h2 { font-size: 1.5rem; padding-bottom: 14px; margin-bottom: 26px; border-bottom: 1px solid var(--line); }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 22px; }
+  .card { display: block; color: var(--ink); text-decoration: none; }
+  .frame { display: block; aspect-ratio: 16 / 11; padding: 18px; border-radius: 22px; background: #f4f4f4; overflow: hidden; }
+  .frame img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; transition: transform 0.5s var(--ease); }
+  .card:hover .frame img { transform: translateY(-4px); }
+  .tags { display: block; margin: 14px 0 4px; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
+  .card b { display: block; font-size: 1.2rem; letter-spacing: -0.02em; margin-bottom: 4px; }
+  .sum { display: block; color: var(--ink-2); font-size: 0.96rem; line-height: 1.5; }
+  @media (max-width: 1000px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } }
 </style>

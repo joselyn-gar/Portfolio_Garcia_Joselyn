@@ -74,14 +74,14 @@ const answers: Entry[] = [
     href: '/about#away',
     group: 'Quick answers',
     keywords: 'fun facts hobbies dodgers baseball jazz video production agriculture board games',
-    answer: 'Dodgers fan, jazz lover, video producer, curious about agriculture operations, and a board game lover (hence the dice).',
+    answer: 'Dodgers fan, jazz lover, video producer, curious about agriculture operations, and a board game lover.',
   },
   {
     title: 'How did you build this site?',
     href: '/about#site',
     group: 'Quick answers',
     keywords: 'build site code how made developed',
-    answer: 'It’s built like a board game, because I love them. The little dog following your cursor can be switched off in the footer.',
+    answer: 'Designed and built with Claude Code. The little dog following your cursor can be switched off in the footer.',
   },
 ];
 

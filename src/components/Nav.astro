@@ -15,7 +15,7 @@ const bar = color === 'ink' ? 'var(--white)' : `var(--${color})`;
 <header class="nav-shell" data-nav>
   <nav class="pill" aria-label="Main">
     <a class="mark" href="/" aria-label="Joselyn Garcia, home">
-      <span class="mark-die" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span class="mark-die" aria-hidden="true">JG</span>
       <span class="mark-name">Joselyn Garcia</span>
     </a>
     <ul class="links" data-links>
@@ -59,12 +59,7 @@ const bar = color === 'ink' ? 'var(--white)' : `var(--${color})`;
   .nav-shell.small .pill { transform: scale(0.94); }
   .mark { display: flex; align-items: center; gap: 9px; text-decoration: none; margin-right: 8px; }
   .mark-name { font-weight: 700; letter-spacing: -0.02em; font-size: 1.02rem; white-space: nowrap; }
-  .mark-die { position: relative; width: 20px; height: 20px; border-radius: 6px; background: #111; transition: transform 0.6s var(--ease); }
-  .mark:hover .mark-die { transform: rotate(180deg); }
-  .mark-die i { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: #fff; }
-  .mark-die i:nth-child(1) { top: 4px; left: 4px; }
-  .mark-die i:nth-child(2) { top: 8px; left: 8px; }
-  .mark-die i:nth-child(3) { bottom: 4px; right: 4px; }
+  .mark-die { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: #111; color: #fff; font: 700 0.62rem var(--sans); letter-spacing: -0.02em; }
   .links { position: relative; display: flex; list-style: none; margin: 0; padding: 0; }
   .links a {
     position: relative; z-index: 1; display: block; padding: 8px 15px; border-radius: 999px;

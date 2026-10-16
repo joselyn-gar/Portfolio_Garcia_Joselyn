@@ -13,7 +13,7 @@
   --ink-3: #6e6e6e;
   --line: rgba(0, 0, 0, 0.1);
   --white: #f6f6f6;
-  --dark: #111111; /* text on light surfaces (dice, deed cards, white buttons) */
+  --dark: #111111; /* text on light surfaces */
   --glass: rgba(255, 255, 255, 0.86);
   --glow: #111111;
 
