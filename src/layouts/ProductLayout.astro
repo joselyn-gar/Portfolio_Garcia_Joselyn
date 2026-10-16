@@ -11,12 +11,13 @@ interface Props {
   tagline: string;
   hero: string;
   heroAlt: string;
-  summary: [string, string][]; // 10-second summary: label, text (may contain <strong>)
+  summary?: [string, string][];
+  links?: [string, string][]; // buttons under the title: label, href // 10-second summary: label, text (may contain <strong>)
   section?: 'projects' | 'playground';
   heroTall?: boolean;
   overview?: [string, string][]; // at-a-glance facts: context, deliverable, tools, team // portrait hero: shown narrower so it fits the screen
 }
-const { slug, eyebrow, title, tagline, hero, heroAlt, summary, section = 'projects', heroTall = false, overview = [] } = Astro.props;
+const { slug, eyebrow, title, tagline, hero, heroAlt, summary = [], section = 'projects', heroTall = false, overview = [], links = [] } = Astro.props;
 const item = items.find((i) => i.slug === slug)!;
 const next = nextItem(slug);
 ---
@@ -28,6 +29,9 @@ const next = nextItem(slug);
       <p class="eyebrow">{eyebrow}</p>
       <h1>{title}</h1>
       <p class="tagline" set:html={tagline}></p>
+      {links.length > 0 && (
+        <p class="p-links">{links.map(([label, href], i) => <a class:list={['btn', { ghost: i > 0 }]} href={href} target="_blank" rel="noopener">{label}</a>)}</p>
+      )}
       {overview.length > 0 && (
         <dl class="overview" aria-label="Project overview">
           {overview.map(([k, v]) => <div><dt>{k}</dt><dd>{v}</dd></div>)}
@@ -36,9 +40,11 @@ const next = nextItem(slug);
       <img class:list={['p-hero-img', { tall: heroTall }]} src={hero} alt={heroAlt} />
     </header>
 
-    <section class="p-summary" aria-label="Summary">
-      {summary.map(([k, v]) => <div><h2>{k}</h2><p set:html={v}></p></div>)}
-    </section>
+    {summary.length > 0 && (
+      <section class="p-summary" aria-label="Summary">
+        {summary.map(([k, v]) => <div><h2>{k}</h2><p set:html={v}></p></div>)}
+      </section>
+    )}
 
     <!-- jump-to contents: built from each chapter's label; sticky rail on desktop, pill + sheet on phones -->
     <nav class="toc" aria-label="On this page" data-toc hidden>
@@ -72,8 +78,10 @@ const next = nextItem(slug);
   .overview dt { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); }
   .overview dd { margin: 2px 0 0; font-weight: 600; font-size: 0.98rem; }
   .role { max-width: calc(100% - 8px); text-align: left; }
+  .p-links { display: flex; gap: 10px; flex-wrap: wrap; margin: 22px 0 0; }
   .role span { flex: none; white-space: nowrap; }
   @media (max-width: 640px) { .overview { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 18px; justify-content: stretch; } .role { font-size: 0.88rem; } }
+  .p-links { display: flex; gap: 10px; flex-wrap: wrap; margin: 22px 0 0; }
   .role span { padding: 4px 10px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
   .p-hero h1 { font-size: clamp(3.2rem, 8vw, 6rem); letter-spacing: -0.01em; margin: 0 0 0.2em; }
   .tagline { font-size: clamp(1.2rem, 2vw, 1.55rem); color: var(--ink-2); max-width: 720px; margin: 0 auto; line-height: 1.4; }
@@ -229,13 +237,13 @@ const next = nextItem(slug);
 
 <script>
   // Contents list from chapter labels, scroll-spy, and a reading progress bar.
-  const chapters = [...document.querySelectorAll<HTMLElement>('[data-chapters] > .chapter')].filter((c) => c.querySelector('.num'));
+  const chapters = [...document.querySelectorAll<HTMLElement>('[data-chapters] > .chapter')].filter((c) => c.querySelector('.num, h2'));
   const toc = document.querySelector<HTMLElement>('[data-toc]');
   const list = document.querySelector<HTMLElement>('[data-toc-list]');
   const pill = document.querySelector<HTMLButtonElement>('[data-toc-pill]');
   const current = document.querySelector<HTMLElement>('[data-toc-current]');
   const bar = document.querySelector<HTMLElement>('[data-progress]');
-  const label = (c: HTMLElement) => c.querySelector('.num')!.textContent!.replace(/^\d+\s*·\s*/, '').trim();
+  const label = (c: HTMLElement) => (c.querySelector('.num') || c.querySelector('h2'))!.textContent!.replace(/^\d+\s*·\s*/, '').trim();
   if (toc && list && pill && chapters.length > 2) {
     toc.hidden = false; pill.hidden = false;
     const links = chapters.map((c, i) => {

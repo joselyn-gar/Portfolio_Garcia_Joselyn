@@ -113,6 +113,20 @@ export const items: Item[] = [
     cover: '/images/textiles/cover.webp',
     stats: [['Prints', '2'], ['Colorways', '5+'], ['Final use', 'Bodice']],
   },
+  {
+    slug: 'motifme',
+    href: '/playground/motifme',
+    title: 'MotifMe',
+    short: 'MotifMe',
+    kind: 'Playground',
+    color: 'motif',
+    face: 2,
+    summary: 'A <strong>motif and print studio</strong> for fashion designers, built in one session by <strong>vibe coding with Claude</strong>.',
+    role: 'Product designer + creative director',
+    tags: ['Vibe coding', 'Fashion', 'Product'],
+    cover: '/images/playground/motifme/01-home-dashboard.png',
+    stats: [['Timeline', 'One session'], ['Tools', 'Claude, GitHub, Vercel']],
+  },
 ];
 
 export const caseStudies = items.filter((i) => i.kind === 'Case study');

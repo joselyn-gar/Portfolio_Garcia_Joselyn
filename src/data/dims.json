@@ -75,6 +75,50 @@
   1280,
   777
  ],
+ "/images/lockin/icon.webp": [
+  512,
+  512
+ ],
+ "/images/lockin/intro-screens.webp": [
+  1024,
+  572
+ ],
+ "/images/lockin/logo-wide.webp": [
+  1600,
+  893
+ ],
+ "/images/lockin/screen-canvas.webp": [
+  1600,
+  658
+ ],
+ "/images/lockin/screen-connect.webp": [
+  1600,
+  1000
+ ],
+ "/images/lockin/screen-dashboard.webp": [
+  1600,
+  1000
+ ],
+ "/images/lockin/screen-forecast.webp": [
+  1600,
+  1000
+ ],
+ "/images/lockin/screen-game.webp": [
+  1600,
+  1000
+ ],
+ "/images/lockin/screen-nav-paths.webp": [
+  1600,
+  910
+ ],
+ "/images/lockin/screen-problem-map.webp": [
+  1600,
+  730
+ ],
+ "/images/lockin/screen-results.webp": [
+  1600,
+  1000
+ ],
  "/images/lyft/billboard.webp": [
   1600,
   900
@@ -114,6 +158,50 @@
  "/images/lyft/payout.webp": [
   1600,
   900
+ ],
+ "/images/playground/motifme/00-before-ai-studio-editor.png": [
+  1227,
+  927
+ ],
+ "/images/playground/motifme/00-before-ai-studio-home.png": [
+  1251,
+  902
+ ],
+ "/images/playground/motifme/00-inspiration-moodboard.webp": [
+  1777,
+  940
+ ],
+ "/images/playground/motifme/00-logo.jpg": [
+  2000,
+  2000
+ ],
+ "/images/playground/motifme/01-home-dashboard.png": [
+  2880,
+  1800
+ ],
+ "/images/playground/motifme/02-motif-studio.png": [
+  2880,
+  1800
+ ],
+ "/images/playground/motifme/03-pattern-repeat.png": [
+  2880,
+  1800
+ ],
+ "/images/playground/motifme/04-mockups.png": [
+  2880,
+  1800
+ ],
+ "/images/playground/motifme/05-community.png": [
+  2880,
+  1800
+ ],
+ "/images/playground/motifme/06-phone-studio.png": [
+  780,
+  1688
+ ],
+ "/images/playground/motifme/icon.webp": [
+  256,
+  256
  ],
  "/images/releaf/brand-guide.webp": [
   1600,

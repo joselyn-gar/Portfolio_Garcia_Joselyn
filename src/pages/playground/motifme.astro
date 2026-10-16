@@ -1,0 +1,146 @@
+---
+import ProductLayout from '../../layouts/ProductLayout.astro';
+
+const live = 'https://motifme.vercel.app';
+const code = 'https://github.com/joselyn-gar/MotifMe';
+const img = (f: string) => `/images/playground/motifme/${f}`;
+---
+<ProductLayout
+  slug="motifme"
+  section="playground"
+  eyebrow="Vibe coding · Claude"
+  title="MotifMe"
+  tagline="<strong>A motif and print studio for fashion designers. Built in one session by vibe coding with Claude.</strong>"
+  hero={img('01-home-dashboard.png')}
+  heroAlt="MotifMe home dashboard: a vector motif and repeating pattern studio with Freehand Draw, Motif Studio and Pattern Repeats"
+  links={[['Try it live →', live]]}
+  overview={[['Role', 'Product designer + creative director'], ['Timeline', 'One session'], ['Tools', 'Claude, GitHub, Vercel']]}
+>
+  <section class="chapter">
+    <h2>The idea</h2>
+    <p>I love making prints. The tools don’t make it easy.</p>
+    <p>To design one print, you jump between Illustrator for shapes, Photoshop for repeats, mockup templates for products and Pinterest for inspiration. Four tools. Four learning curves. None of them talk to each other.</p>
+    <p>What if one studio took you from a single motif to a finished product?</p>
+    <p>MotifMe is that studio. Think LinkedIn meets Figma meets Adobe Illustrator, built for print lovers who aren’t technical.</p>
+    <p><strong>Who it’s for:</strong> fashion students, hobbyists and early print designers. People with taste who don’t want a steep learning curve.</p>
+  </section>
+
+  <section class="chapter">
+    <h2>Attempt one didn’t land</h2>
+    <p>I started in Google AI Studio. It gave me an app, but not the right one.</p>
+    <p>The screens were busy. The tools felt generic. Nothing about it felt like real print design.</p>
+    <div class="band cols">
+      <figure><img src={img('00-before-ai-studio-home.png')} alt="The first Google AI Studio version: a busy home screen titled Vector Motifs and Repeating Pattern Studio" loading="lazy" /></figure>
+      <figure><img src={img('00-before-ai-studio-editor.png')} alt="The first Google AI Studio version of the editor, crowded with panels, chips and sliders" loading="lazy" /></figure>
+    </div>
+    <p class="after">So I switched to Claude and changed my approach.</p>
+  </section>
+
+  <section class="chapter">
+    <h2>How I vibe coded it</h2>
+    <h3>I briefed it like a design partner</h3>
+    <p>I didn’t just describe an app. I gave context.</p>
+    <ul class="list">
+      <li>Screenshots of the AI Studio version, so it could see what failed</li>
+      <li>My MotifMe logo</li>
+      <li>A Pinterest board of the end products I wanted, like block-print florals on stripes</li>
+      <li>One clear ask: act as a UI/UX designer with fashion people in mind</li>
+    </ul>
+    <div class="band cols">
+      <figure><img src={img('00-logo.jpg')} alt="The MotifMe logo: Motif in bold black serif and Me in italic" loading="lazy" /></figure>
+      <figure><img src={img('00-inspiration-moodboard.webp')} alt="Inspiration mood board of block-print florals on stripes and other printed products" loading="lazy" /></figure>
+    </div>
+
+    <h3>Then I steered with plain feedback</h3>
+    <ol class="rounds">
+      <li><b>Round 1: the first prototype.</b> A working studio with motifs, freehand drawing, repeats, mockups, a mood board, community and exports.</li>
+      <li><b>Round 2: “Make it white and modern.”</b> I shared my logo. The interface became clean and monochrome, with a black wordmark matching my brand. Now the prints are the only color on screen.</li>
+      <li><b>Round 3: “Add a dashboard.”</b> A home screen that greets you, suggests ideas and picks up your last project.</li>
+      <li><b>Round 4: ship it.</b> We pushed it to GitHub, fixed it for public visitors and deployed it on Vercel.</li>
+    </ol>
+    <p class="after">I never wrote a line of code. I made the product decisions.</p>
+  </section>
+
+  <section class="chapter">
+    <h2>The flow</h2>
+    <p>Three numbered steps. Each screen ends with a button to the next.</p>
+
+    <h3>01 · Motif Studio</h3>
+    <p>Build symmetric motifs in layers: petals, leaves, scallops, stars, hearts and more. Each layer has plain-language dials like fullness, tip shape and rotation. Drag the handle on the artboard to resize and rotate.</p>
+    <p>Prefer to draw? Freehand mode mirrors every stroke live, up to 12 folds.</p>
+    <figure class="band"><img src={img('02-motif-studio.png')} alt="Motif Studio: a layered pink dahlia motif on the artboard, with palette and layers on the left and the shape dial and style assistant on the right" loading="lazy" /></figure>
+
+    <h3>02 · Pattern Repeat</h3>
+    <p>Turn the motif into a repeat: straight, half-drop, brick, mirror, tossed or placement. Everything is in real inches, with rulers and 300 dpi output. Add a stripe, ticking, gingham or check ground. Finish it in linen or paper.</p>
+    <figure class="band"><img src={img('03-pattern-repeat.png')} alt="Pattern Repeat screen showing the motif tiled as a repeat with rulers and ground options" loading="lazy" /></figure>
+
+    <h3>03 · Mockups</h3>
+    <p>See it on a slip dress, tee, tote, pillow, silk scarf or wallpaper. Every product is drawn at true scale. A 4″ tile looks different on a dress than on a wall, and MotifMe shows that.</p>
+    <figure class="band"><img src={img('04-mockups.png')} alt="Mockups screen showing the print on products at true scale" loading="lazy" /></figure>
+  </section>
+
+  <section class="chapter">
+    <h2>Meet Mofi</h2>
+    <p>Mofi is the built-in AI assistant.</p>
+    <p>Type “indigo block-print marigold” and Mofi builds an editable motif with a palette and a repeat suggestion. It’s a starting point, not a final answer. Every layer stays editable.</p>
+    <p>Mofi also gives one-click tips grounded in print craft. Take “two-tone discipline”: block printers often carve just two blocks, and one click recolors your motif to match.</p>
+  </section>
+
+  <section class="chapter">
+    <h2>Community</h2>
+    <p>Prints are better shared. Designers can post their work, appreciate others’ and remix any print into their own studio.</p>
+    <figure class="band"><img src={img('05-community.png')} alt="Community screen with a grid of shared prints that can be appreciated or remixed" loading="lazy" /></figure>
+  </section>
+
+  <section class="chapter">
+    <h2>Design decisions</h2>
+    <ul class="decide">
+      <li><b>Speak the designer’s language.</b> “Fullness” and “tip shape” replace Bézier handles. Inches, dpi, fat quarters and yards replace pixels.</li>
+      <li><b>Let the prints be the color.</b> The interface is white and monochrome so the work stands out.</li>
+      <li><b>Never start from blank.</b> The studio opens with a sample motif, Dahlia Block, ready to tweak.</li>
+      <li><b>Show true scale.</b> Most mockup tools ignore the size of the print. MotifMe doesn’t.</li>
+      <li><b>Build around remixing.</b> Community is about making, not just liking.</li>
+      <li><b>Work everywhere.</b> The layout stacks for phones.</li>
+    </ul>
+    <figure class="band phone"><img src={img('06-phone-studio.png')} alt="MotifMe Motif Studio on a phone, with panels stacked" loading="lazy" /></figure>
+  </section>
+
+  <section class="chapter">
+    <h2>What I learned</h2>
+    <ul class="decide">
+      <li><b>The brief matters more than the tool.</b> Same idea, two tools, very different results. What changed? Screenshots of what failed, my logo and a mood board.</li>
+      <li><b>Feedback can be simple.</b> “Make it white and modern” worked. Clear direction beats technical detail.</li>
+      <li><b>Designers can ship.</b> I owned the vision, the audience and every product call. The code followed.</li>
+    </ul>
+  </section>
+
+  <section class="chapter">
+    <h2>What’s next</h2>
+    <ul class="list">
+      <li>Colorways: one print in four palettes, side by side</li>
+      <li>More mockups: swimwear, sneakers, phone cases</li>
+      <li>Custom shape editing</li>
+      <li>Accounts, so work saves across devices</li>
+    </ul>
+    <p class="ctas">
+      <a class="btn" href={live} target="_blank" rel="noopener">Try MotifMe →</a>
+      <a class="btn ghost" href={code} target="_blank" rel="noopener">View the code →</a>
+    </p>
+  </section>
+</ProductLayout>
+
+<style>
+  .chapter h3 { margin: 36px 0 8px; font-size: 1.3rem; letter-spacing: -0.02em; }
+  .chapter p { margin-bottom: 0.7em; }
+  .after { margin-top: 24px !important; }
+  .list { padding-left: 1.2em; margin: 8px 0 0; color: var(--ink-2); font-size: 1.05rem; line-height: 1.6; max-width: var(--text); }
+  .list li { margin-bottom: 4px; }
+  .rounds { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 10px; max-width: var(--text); }
+  .rounds li { padding: 16px 18px; border-radius: 16px; background: var(--white); color: var(--ink-2); line-height: 1.55; }
+  .rounds b, .decide b { color: var(--ink); }
+  .decide { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 14px; max-width: var(--text); }
+  .decide li { padding-left: 16px; border-left: 3px solid var(--line); color: var(--ink-2); line-height: 1.55; }
+  .cols figure img { border: 1px solid var(--line); }
+  .chapter > figure.phone { max-width: 340px; }
+  .ctas { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px !important; }
+</style>
