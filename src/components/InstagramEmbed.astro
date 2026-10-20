@@ -12,6 +12,7 @@ const clean = (u: string) => {
 <div class="ig" data-ig>
   <div class="ig-grid">
     {posts.map((p) => (
+      <div class="ig-cell">
       <blockquote class="instagram-media" data-instgrm-permalink={clean(p.url)} data-instgrm-version="14">
         <a href={clean(p.url)} target="_blank" rel="noopener">
           <span class="ig-mark" aria-hidden="true">
@@ -21,6 +22,7 @@ const clean = (u: string) => {
           <span class="ig-cta">View on Instagram →</span>
         </a>
       </blockquote>
+      </div>
     ))}
   </div>
   <a class="ig-follow" href={`https://www.instagram.com/${handle}/`} target="_blank" rel="noopener">Follow @{handle} <span aria-hidden="true">→</span></a>
@@ -45,13 +47,19 @@ const clean = (u: string) => {
 
 <style>
   .ig-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  /* equal frames: Instagram sizes each embed to its media, so every cell gets the same height
+     (header + a 4:5 post + footer) and the embed fills it, top-aligned */
+  .ig { container-type: inline-size; }
+  .ig-cell { height: calc((100cqw - 48px) / 3 * 1.25 + 262px); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; background: #fff; }
+  @supports not (height: 1cqw) { .ig-cell { height: auto; } }
+  .ig-cell :global(iframe.instagram-media) { height: 100% !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
   .ig-grid :global(.instagram-media), .ig-grid :global(iframe.instagram-media) { margin: 0 !important; min-width: 0 !important; width: 100% !important; max-width: none !important; }
-  blockquote.instagram-media { background: var(--white); border-radius: 22px; box-shadow: 0 20px 60px rgba(26, 26, 26, 0.12); }
-  blockquote.instagram-media a { display: grid; place-items: center; gap: 12px; aspect-ratio: 4 / 5; padding: 24px; text-align: center; text-decoration: none; color: var(--ink); }
+  blockquote.instagram-media { height: 100%; background: var(--white); border-radius: 0; }
+  blockquote.instagram-media a { display: grid; place-content: center; justify-items: center; gap: 12px; height: 100%; padding: 24px; text-align: center; text-decoration: none; color: var(--ink); }
   .ig-mark { color: var(--accent-text); }
   .ig-label { font-family: var(--serif); font-size: 1.5rem; line-height: 1.15; }
   .ig-cta { font-weight: 700; color: var(--accent-text); }
   .ig-follow { display: inline-block; margin-top: 36px; font-weight: 700; color: var(--accent-text); text-decoration: none; }
   .ig-follow:hover { text-decoration: underline; text-underline-offset: 5px; }
-  @media (max-width: 860px) { .ig-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } }
+  @media (max-width: 860px) { .ig-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; } .ig-cell { height: calc(min(100cqw, 420px) * 1.25 + 262px); } }
 </style>
