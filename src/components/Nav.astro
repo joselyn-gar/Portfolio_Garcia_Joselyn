@@ -32,6 +32,10 @@ const bar = color === 'ink' ? 'var(--white)' : `var(--${color})`;
     <button class="icon" type="button" data-search-open aria-label="Search (Command K)">
       <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
+    <button class="icon theme" type="button" data-theme-toggle aria-pressed="false" aria-label="Dark mode">
+      <svg class="moon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+      <svg class="sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
     <a class="resume" href={site.resume || "/resume"} target="_blank" rel="noopener">Resume <span aria-hidden="true">↗</span></a>
     <button class="menu" type="button" aria-expanded="false" aria-controls="sheet" data-menu>
       <span class="sr-only">Menu</span><i></i><i></i>
@@ -51,35 +55,37 @@ const bar = color === 'ink' ? 'var(--white)' : `var(--${color})`;
   .pill {
     pointer-events: auto; display: flex; align-items: center; gap: 4px;
     padding: 6px 6px 6px 14px; border-radius: 999px;
-    background: var(--glass); color: #111;
+    background: var(--glass); color: var(--ink);
     backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06), inset 0 0 0 1px var(--line);
     transition: transform 0.35s var(--ease), padding 0.35s var(--ease);
   }
   .nav-shell.small .pill { transform: scale(0.94); }
   .mark { display: flex; align-items: center; gap: 9px; text-decoration: none; margin-right: 8px; }
   .mark-name { font-weight: 700; letter-spacing: -0.02em; font-size: 1.02rem; white-space: nowrap; }
-  .mark-die { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: #111; color: #fff; font: 700 0.62rem var(--sans); letter-spacing: -0.02em; }
+  .mark-die { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 6px; background: var(--ink); color: var(--on-ink); font: 700 0.62rem var(--sans); letter-spacing: -0.02em; }
   .links { position: relative; display: flex; list-style: none; margin: 0; padding: 0; }
   .links a {
     position: relative; z-index: 1; display: block; padding: 8px 15px; border-radius: 999px;
-    text-decoration: none; font-size: 0.92rem; font-weight: 500; color: #555; transition: color 0.2s;
+    text-decoration: none; font-size: 0.92rem; font-weight: 500; color: var(--ink-2); transition: color 0.2s;
   }
-  .links a:hover, .links a[aria-current='page'] { color: #111; }
+  .links a:hover, .links a[aria-current='page'] { color: var(--ink); }
   .links a[aria-current='page']::after {
-    content: ''; position: absolute; left: 15px; right: 15px; bottom: 3px; height: 2px; border-radius: 2px; background: #111;
+    content: ''; position: absolute; left: 15px; right: 15px; bottom: 3px; height: 2px; border-radius: 2px; background: var(--ink);
   }
   .glide {
     position: absolute; top: 0; bottom: 0; left: 0; width: 0; border-radius: 999px;
-    background: rgba(0, 0, 0, 0.06); opacity: 0;
+    background: var(--hover); opacity: 0;
     transition: transform 0.35s var(--ease), width 0.35s var(--ease), opacity 0.2s;
   }
-  .divider { width: 1px; height: 20px; background: rgba(0, 0, 0, 0.12); margin: 0 6px; }
+  .divider { width: 1px; height: 20px; background: var(--line); margin: 0 6px; }
   .icon, .menu { border: 0; background: transparent; color: inherit; cursor: pointer; border-radius: 999px; display: grid; place-items: center; width: 36px; height: 36px; }
-  .icon:hover { background: rgba(0, 0, 0, 0.06); }
+  .icon:hover { background: var(--hover); }
+  .theme .sun, :global(html[data-theme='dark']) .theme .moon { display: none; }
+  :global(html[data-theme='dark']) .theme .sun { display: block; }
   .resume {
     text-decoration: none; font-size: 0.9rem; font-weight: 600; padding: 8px 15px; border-radius: 999px;
-    background: #111; color: #fff; transition: transform 0.25s var(--ease);
+    background: var(--ink); color: var(--on-ink); transition: transform 0.25s var(--ease);
   }
   .resume:hover { transform: translateY(-1px); }
   .menu { display: none; position: relative; }
@@ -91,7 +97,7 @@ const bar = color === 'ink' ? 'var(--white)' : `var(--${color})`;
   .menu[aria-expanded='true'] i:last-of-type { transform: rotate(-45deg); }
   .sheet {
     pointer-events: auto; position: fixed; inset: 0; z-index: -1; padding: 110px 28px 40px;
-    background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px);
+    background: var(--glass); backdrop-filter: blur(12px);
   }
   .sheet ul { list-style: none; margin: 0 0 28px; padding: 0; }
   .sheet a { display: block; font-weight: 700; letter-spacing: -0.04em; font-size: 2.1rem; text-decoration: none; padding: 6px 0; }
@@ -105,6 +111,17 @@ const bar = color === 'ink' ? 'var(--white)' : `var(--${color})`;
 </style>
 
 <script>
+  // dark mode: the saved choice is applied in Base.astro's head before paint; this just flips and saves it
+  const root = document.documentElement;
+  const sync = () => document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((b) => b.setAttribute('aria-pressed', String(root.dataset.theme === 'dark')));
+  sync();
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]').forEach((b) => b.addEventListener('click', () => {
+    const dark = root.dataset.theme !== 'dark';
+    if (dark) root.dataset.theme = 'dark'; else delete root.dataset.theme;
+    try { localStorage.setItem('theme', dark ? 'dark' : 'light'); } catch {}
+    sync();
+  }));
+
   const shell = document.querySelector<HTMLElement>('[data-nav]')!;
   const list = shell.querySelector<HTMLElement>('[data-links]')!;
   const glide = shell.querySelector<HTMLElement>('[data-glide]')!;
